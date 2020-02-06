@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Hexo</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2020-02-05T12:56:01.511Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>Lynn Zuo</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>HexoBlog</title>
+    <link href="http://yoursite.com/2020/02/05/hexoBlog/"/>
+    <id>http://yoursite.com/2020/02/05/hexoBlog/</id>
+    <published>2020-02-05T12:15:56.000Z</published>
+    <updated>2020-02-05T12:56:01.511Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;MyBlog&quot;&gt;&lt;a href=&quot;#MyBlog&quot; class=&quot;headerlink&quot; title=&quot;MyBlog&quot;&gt;&lt;/a&gt;MyBlog&lt;/h1&gt;&lt;h2 id=&quot;Welcome&quot;&gt;&lt;a href=&quot;#Welcome&quot; class=&quot;headerlink&quot; ti
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://yoursite.com/2020/02/05/hello-world/"/>
+    <id>http://yoursite.com/2020/02/05/hello-world/</id>
+    <published>2020-02-05T12:15:01.000Z</published>
+    <updated>2020-02-06T09:43:08.082Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+</feed>
