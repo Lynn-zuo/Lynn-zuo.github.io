@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-02-06T12:13:01.199Z</updated>
+  <updated>2020-02-11T11:22:31.906Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,18 +17,39 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>记录Gitee+Hexo搭建博客主题样式及图片不显示问题</title>
+    <link href="http://yoursite.com/2020/02/08/firstBlog-path/"/>
+    <id>http://yoursite.com/2020/02/08/firstBlog-path/</id>
+    <published>2020-02-08T14:12:45.000Z</published>
+    <updated>2020-02-11T11:22:31.906Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;主题样式及图片不显示问题&quot;&gt;&lt;a href=&quot;#主题样式及图片不显示问题&quot; class=&quot;headerlink&quot; title=&quot;主题样式及图片不显示问题&quot;&gt;&lt;/a&gt;主题样式及图片不显示问题&lt;/h2&gt;&lt;p&gt;使用&lt;strong&gt;Git+Hexo+GitHub/Gitee搭建个人博客&lt;/strong&gt;的详细准确教程网上有很多，本人也是按照网上大佬们的教程进行操作的，这里不再重复，本文主要记录一下在搭建个人博客时遇到的几点问题，供已经了解搭建流程并存在类似问题的同学阅读交流。&lt;/p&gt;
+&lt;p&gt;首先是搭建基于Git+Hexo+GitHub的个人博客，基本没什么问题就实现了，但实现后发现个人博客网页刷新实在是慢。于是选择Gitee（码云）建仓库搭建博客，然而遇到了一些路径问题，问题一解决比较简单，此处略作记录；问题二鲜少有提及，此处仅针对我尝试并成功的修改做说明。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="学习" scheme="http://yoursite.com/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="Blogs" scheme="http://yoursite.com/tags/Blogs/"/>
+    
+      <category term="Gitee" scheme="http://yoursite.com/tags/Gitee/"/>
+    
+  </entry>
+  
+  <entry>
     <title>HexoBlog</title>
     <link href="http://yoursite.com/2020/02/05/hexoBlog/"/>
     <id>http://yoursite.com/2020/02/05/hexoBlog/</id>
     <published>2020-02-05T12:15:56.000Z</published>
-    <updated>2020-02-06T12:13:01.199Z</updated>
+    <updated>2020-02-11T11:19:58.922Z</updated>
     
     <summary type="html">
     
-      
-      
-        &lt;h1 id=&quot;MyBlog&quot;&gt;&lt;a href=&quot;#MyBlog&quot; class=&quot;headerlink&quot; title=&quot;MyBlog&quot;&gt;&lt;/a&gt;MyBlog&lt;/h1&gt;&lt;h2 id=&quot;Welcome&quot;&gt;&lt;a href=&quot;#Welcome&quot; class=&quot;headerlink&quot; ti
-      
+      &lt;h2 id=&quot;Welcome&quot;&gt;&lt;a href=&quot;#Welcome&quot; class=&quot;headerlink&quot; title=&quot;Welcome!&quot;&gt;&lt;/a&gt;Welcome!&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;This is my very first personal blog on Gitee.&lt;/strong&gt;&lt;br&gt;&lt;strong&gt;&lt;a href=&quot;https://lynn-zuo.gitee.io/lynn_blog&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://lynn-zuo.gitee.io/lynn_blog&lt;/a&gt;&lt;/strong&gt;&lt;br&gt;&lt;strong&gt;Thanks for the author Shen-Yu’s blog theme: hexo-theme-ayer. The website of sourcecode is &lt;a href=&quot;https://github.com/Shen-Yu/hexo-theme-ayer&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://github.com/Shen-Yu/hexo-theme-ayer&lt;/a&gt;.&lt;/strong&gt;&lt;/p&gt;
     
     </summary>
     
@@ -43,14 +64,12 @@
     <link href="http://yoursite.com/2020/02/05/hello-world/"/>
     <id>http://yoursite.com/2020/02/05/hello-world/</id>
     <published>2020-02-05T12:15:01.000Z</published>
-    <updated>2020-02-06T09:43:08.082Z</updated>
+    <updated>2020-02-11T11:19:24.744Z</updated>
     
     <summary type="html">
     
-      
-      
-        &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
-      
+      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&quot;https://hexo.io/docs/troubleshooting.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&quot;Quick-Start&quot;&gt;&lt;a href=&quot;#Quick-Start&quot; class=&quot;headerlink&quot; title=&quot;Quick Start&quot;&gt;&lt;/a&gt;Quick Start&lt;/h2&gt;&lt;h3 id=&quot;Create-a-new-post&quot;&gt;&lt;a href=&quot;#Create-a-new-post&quot; class=&quot;headerlink&quot; title=&quot;Create a new post&quot;&gt;&lt;/a&gt;Create a new post&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo new &lt;span class=&quot;string&quot;&gt;&quot;My New Post&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
     
     </summary>
     

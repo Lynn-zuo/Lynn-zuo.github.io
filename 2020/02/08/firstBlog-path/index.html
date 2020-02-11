@@ -6,7 +6,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    HexoBlog |  Lynn
+    记录Gitee+Hexo搭建博客主题样式及图片不显示问题 |  Lynn
   </title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   
@@ -32,7 +32,7 @@
   <div id="app">
     <main class="content">
       <section class="outer">
-  <article id="post-hexoBlog" class="article article-type-post" itemscope
+  <article id="post-firstBlog-path" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -40,7 +40,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  HexoBlog
+  记录Gitee+Hexo搭建博客主题样式及图片不显示问题
 </h1>
   
 
@@ -49,10 +49,14 @@
 
     
     <div class="article-meta">
-      <a href="/2020/02/05/hexoBlog/" class="article-date">
-  <time datetime="2020-02-05T12:15:56.000Z" itemprop="datePublished">2020-02-05</time>
+      <a href="/2020/02/08/firstBlog-path/" class="article-date">
+  <time datetime="2020-02-08T14:12:45.000Z" itemprop="datePublished">2020-02-08</time>
 </a>
       
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%AD%A6%E4%B9%A0/">学习</a>
+  </div>
+
       
       
 <div class="word_count">
@@ -60,7 +64,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">40字</span>
+            <span class="post-count">836字</span>
         </span>
     </span>
 
@@ -69,7 +73,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">1分钟</span>
+            <span class="post-count">3分钟</span>
         </span>
     </span>
 </div>
@@ -95,9 +99,14 @@
       
 
       
-      <h2 id="Welcome"><a href="#Welcome" class="headerlink" title="Welcome!"></a>Welcome!</h2><p><strong>This is my very first personal blog on Gitee.</strong><br><strong><a href="https://lynn-zuo.gitee.io/lynn_blog" target="_blank" rel="noopener">https://lynn-zuo.gitee.io/lynn_blog</a></strong><br><strong>Thanks for the author Shen-Yu’s blog theme: hexo-theme-ayer. The website of sourcecode is <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank" rel="noopener">https://github.com/Shen-Yu/hexo-theme-ayer</a>.</strong></p>
+      <h2 id="主题样式及图片不显示问题"><a href="#主题样式及图片不显示问题" class="headerlink" title="主题样式及图片不显示问题"></a>主题样式及图片不显示问题</h2><p>使用<strong>Git+Hexo+GitHub/Gitee搭建个人博客</strong>的详细准确教程网上有很多，本人也是按照网上大佬们的教程进行操作的，这里不再重复，本文主要记录一下在搭建个人博客时遇到的几点问题，供已经了解搭建流程并存在类似问题的同学阅读交流。</p>
+<p>首先是搭建基于Git+Hexo+GitHub的个人博客，基本没什么问题就实现了，但实现后发现个人博客网页刷新实在是慢。于是选择Gitee（码云）建仓库搭建博客，然而遇到了一些路径问题，问题一解决比较简单，此处略作记录；问题二鲜少有提及，此处仅针对我尝试并成功的修改做说明。</p>
 <a id="more"></a>
 
+<h3 id="P1：本地（localhost-4000）显示正确但上传到Gitee后主题样式不显示"><a href="#P1：本地（localhost-4000）显示正确但上传到Gitee后主题样式不显示" class="headerlink" title="P1：本地（localhost:4000）显示正确但上传到Gitee后主题样式不显示"></a>P1：本地（localhost:4000）显示正确但上传到Gitee后主题样式不显示</h3><p>此时显示如下图所示，因为这是后来测试时截的图，图片路径已设置好，故此时图片显示正确，但样式无法显示：<br><img src="1.png" alt="不显示主题样式" title="不显示主题样式"><br>在所建博客本地仓库目录下的_config.yml文件中如下位置做出如下修改：<br><img src="2.png" alt="root路径修改" title="root路径修改"><br>按照注释中修改如下：<br><img src="3.png" alt="url及root路径修改" title="url及root路径修改">  </p>
+<h5 id="Ps-在搜索与尝试过程中发现，仅修改root路径也可使样式正确显示，url可以不做修改。"><a href="#Ps-在搜索与尝试过程中发现，仅修改root路径也可使样式正确显示，url可以不做修改。" class="headerlink" title="Ps:在搜索与尝试过程中发现，仅修改root路径也可使样式正确显示，url可以不做修改。"></a>Ps:在搜索与尝试过程中发现，仅修改root路径也可使样式正确显示，url可以不做修改。</h5><h3 id="P2：主题样式成功显示，但上传到Gitee后主题图片不显示"><a href="#P2：主题样式成功显示，但上传到Gitee后主题图片不显示" class="headerlink" title="P2：主题样式成功显示，但上传到Gitee后主题图片不显示"></a>P2：主题样式成功显示，但上传到Gitee后主题图片不显示</h3><p>经过修改root路径后，样式可以成功显示，但又发现主题图片无法显示，此时主页刷新（多刷新几次）显示如下图所示：<br><img src="4.png" alt="不显示主题图片" title="不显示主题图片"><br>查看源代码，看到图片位置显示alt内容能够想到应该是图片路径问题，在主题路径下的_config.yml文件内修改图片路径，经过多次尝试更改路径，图标、Logo及Cover路径改为images/favicon.ico、images/ayer-side.svg和images/cover4.jpg时能够成功显示主页图片及侧边栏Logo，但网页标题图片无法显示且当导航到其他页面时，侧边栏Logo无法正常显示：<br><img src="5.png" alt="不显示网页标题图标"><br><img src="6.png" alt="不显示侧边栏Logo"><br>修改主要注意以下两点：1、将图片相对路径改为绝对路径；2、此处绝对路径为Gitee上个人博客远程仓库上的绝对路径。<br><img src="7.png" alt="修改图片绝对路径"><br>修改后博客页面即可正常显示:<br><img src="8.png" alt="博客页面正常显示"><br>在GitHub上完全没有遇到以上路径问题，而且看其他大佬教程中也没有提到这个问题，应该跟我Gitee Pages生成的网站地址有关，比别人多了 <strong>/lynn_blog</strong>。<br><img src="10.png" alt="博客页面正常显示"></p>
+<h3 id="P3：fatal-not-a-git-repository-or-not-any-parent-up-to-mount-point-mnt"><a href="#P3：fatal-not-a-git-repository-or-not-any-parent-up-to-mount-point-mnt" class="headerlink" title="P3：fatal: not a git repository (or not any parent up to mount point /mnt)"></a>P3：fatal: not a git repository (or not any parent up to mount point /mnt)</h3><p>新搭建的博客在仓库主页没有README.md文件，想要新增一个README.md文件，结果在输入git add README.md命令时报错：fatal: not a git repository (or not any parent up to mount point /mnt)。<br>首先进入你新建博客目录下的.deploy_git目录中，添加README.md文件，输入命令$ echo “#Lynn_Blog” &gt;&gt; README.md（该命令可不在.deploy_git目录下进行）和$ git add README.md（该命令必须在.deploy_git目录下进行，否则报错）也不会报错，原因是为与远程仓库连接的是.deploy_git目录。<br><img src="9.png" alt="正确路径演示"></p>
+<h4 id="如大家仍有问题或遇到其他问题，欢迎一起交流学习！"><a href="#如大家仍有问题或遇到其他问题，欢迎一起交流学习！" class="headerlink" title="如大家仍有问题或遇到其他问题，欢迎一起交流学习！"></a>如大家仍有问题或遇到其他问题，欢迎一起交流学习！</h4>
       
       <!-- 打赏 -->
       
@@ -107,11 +116,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/02/05/hexoBlog/" data-id="ck6hsqm280003c6vd5hod400q"
+      <a data-url="http://yoursite.com/2020/02/08/firstBlog-path/" data-id="ck6hsqm270002c6vd7vbn47f5"
         class="article-share-link">分享</a>
         
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/notes/" rel="tag">notes</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Blogs/" rel="tag">Blogs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Gitee/" rel="tag">Gitee</a></li></ul>
 
     </footer>
 
@@ -121,19 +130,10 @@
   
   <nav class="article-nav">
     
-      <a href="/2020/02/08/firstBlog-path/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            记录Gitee+Hexo搭建博客主题样式及图片不显示问题
-          
-        </div>
-      </a>
     
-    
-      <a href="/2020/02/05/hello-world/" class="article-nav-link">
+      <a href="/2020/02/05/hexoBlog/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">Hello World</div>
+        <div class="article-nav-title">HexoBlog</div>
       </a>
     
   </nav>
