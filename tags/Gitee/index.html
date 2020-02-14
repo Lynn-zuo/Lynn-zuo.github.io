@@ -10,7 +10,7 @@
   </title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   
-  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="shortcut icon" href="/images/favicon.ico" />
   
   
 <link rel="stylesheet" href="/css/style.css">
@@ -103,10 +103,10 @@
       <li>
         
         
-        <ul class="list-inline">
-  <li>PV:<span id="busuanzi_value_page_pv"></span></li>
-  <li>UV:<span id="busuanzi_value_site_uv"></span></li>
-</ul>
+        <span>
+  <i>PV:<span id="busuanzi_value_page_pv"></span></i>
+  <i>UV:<span id="busuanzi_value_site_uv"></span></i>
+</span>
         
       </li>
       <li>
@@ -221,6 +221,9 @@
 <script src="/js/busuanzi-2.3.pure.min.js"></script>
 
 
+<script src="/js/share.js"></script>
+
+
 
 <script src="/fancybox/jquery.fancybox.min.js"></script>
 
@@ -231,11 +234,11 @@
   try {
     var typed = new Typed("#subtitle", {
     strings: ['面朝大海，春暖花开','愿你一生努力，一生被爱','想要的都拥有，得不到的都释怀'],
-    startDelay: 0,
-    typeSpeed: 200,
-    loop: true,
-    backSpeed: 100,
-    showCursor: true
+    startDelay: theme.subtitle.startDelay,
+    typeSpeed: theme.subtitle.typeSpeed,
+    loop: theme.subtitle.loop,
+    backSpeed: theme.subtitle.backSpeed,
+    showCursor: theme.subtitle.showCursor
     });
   } catch (err) {
   }
@@ -247,7 +250,7 @@
 
 <script>
   var ayerConfig = {
-    mathjax: false
+    mathjax: theme.mathjax
   }
 </script>
 

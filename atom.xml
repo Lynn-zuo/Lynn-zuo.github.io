@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-02-11T11:22:31.906Z</updated>
+  <updated>2020-02-14T05:06:17.022Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,11 +17,36 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>情人节表白神器</title>
+    <link href="http://yoursite.com/2020/02/13/%E6%83%85%E4%BA%BA%E8%8A%82%E8%A1%A8%E7%99%BD%E7%A5%9E%E5%99%A8/"/>
+    <id>http://yoursite.com/2020/02/13/%E6%83%85%E4%BA%BA%E8%8A%82%E8%A1%A8%E7%99%BD%E7%A5%9E%E5%99%A8/</id>
+    <published>2020-02-13T14:09:32.000Z</published>
+    <updated>2020-02-14T05:06:17.022Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;单身时节又逢君&quot;&gt;&lt;a href=&quot;#单身时节又逢君&quot; class=&quot;headerlink&quot; title=&quot;单身时节又逢君&quot;&gt;&lt;/a&gt;单身时节又逢君&lt;/h2&gt;&lt;p&gt;“都2020年了，这么浪漫的年份，你还是一个人吗？”&lt;/p&gt;
+&lt;p&gt;“难不成我还能是一条狗？”&lt;/p&gt;
+&lt;p&gt;嘻嘻嘻，祝大家情人节快乐呀！虽然疫情使得大家在这个情人节被异地了，甚至于成为小哥哥小姐姐们脱单之路上的拦路虎，但是我们可以更多点联系与互动，来表达自己的喜爱与思念呀，比如~线上表白系列来咯！ &lt;em&gt;^O^&lt;/em&gt; &lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="生活" scheme="http://yoursite.com/categories/%E7%94%9F%E6%B4%BB/"/>
+    
+    
+      <category term="notes" scheme="http://yoursite.com/tags/notes/"/>
+    
+      <category term="Python" scheme="http://yoursite.com/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
     <title>记录Gitee+Hexo搭建博客主题样式及图片不显示问题</title>
     <link href="http://yoursite.com/2020/02/08/firstBlog-path/"/>
     <id>http://yoursite.com/2020/02/08/firstBlog-path/</id>
     <published>2020-02-08T14:12:45.000Z</published>
-    <updated>2020-02-11T11:22:31.906Z</updated>
+    <updated>2020-02-12T09:40:26.062Z</updated>
     
     <summary type="html">
     
@@ -41,15 +66,16 @@
   </entry>
   
   <entry>
-    <title>HexoBlog</title>
-    <link href="http://yoursite.com/2020/02/05/hexoBlog/"/>
-    <id>http://yoursite.com/2020/02/05/hexoBlog/</id>
-    <published>2020-02-05T12:15:56.000Z</published>
-    <updated>2020-02-11T11:19:58.922Z</updated>
+    <title>Hello World</title>
+    <link href="http://yoursite.com/2020/02/06/hello-world/"/>
+    <id>http://yoursite.com/2020/02/06/hello-world/</id>
+    <published>2020-02-06T14:30:00.000Z</published>
+    <updated>2020-02-14T02:55:28.788Z</updated>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;Welcome&quot;&gt;&lt;a href=&quot;#Welcome&quot; class=&quot;headerlink&quot; title=&quot;Welcome!&quot;&gt;&lt;/a&gt;Welcome!&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;This is my very first personal blog on Gitee.&lt;/strong&gt;&lt;br&gt;&lt;strong&gt;&lt;a href=&quot;https://lynn-zuo.gitee.io/lynn_blog&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://lynn-zuo.gitee.io/lynn_blog&lt;/a&gt;&lt;/strong&gt;&lt;br&gt;&lt;strong&gt;Thanks for the author Shen-Yu’s blog theme: hexo-theme-ayer. The website of sourcecode is &lt;a href=&quot;https://github.com/Shen-Yu/hexo-theme-ayer&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://github.com/Shen-Yu/hexo-theme-ayer&lt;/a&gt;.&lt;/strong&gt;&lt;/p&gt;
+      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&quot;https://hexo.io/docs/troubleshooting.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&quot;Quick-Start&quot;&gt;&lt;a href=&quot;#Quick-Start&quot; class=&quot;headerlink&quot; title=&quot;Quick Start&quot;&gt;&lt;/a&gt;Quick Start&lt;/h2&gt;&lt;h3 id=&quot;Create-a-new-post&quot;&gt;&lt;a href=&quot;#Create-a-new-post&quot; class=&quot;headerlink&quot; title=&quot;Create a new post&quot;&gt;&lt;/a&gt;Create a new post&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo new &lt;span class=&quot;string&quot;&gt;&quot;My New Post&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
     
     </summary>
     
@@ -60,20 +86,21 @@
   </entry>
   
   <entry>
-    <title>Hello World</title>
-    <link href="http://yoursite.com/2020/02/05/hello-world/"/>
-    <id>http://yoursite.com/2020/02/05/hello-world/</id>
-    <published>2020-02-05T12:15:01.000Z</published>
-    <updated>2020-02-11T11:19:24.744Z</updated>
+    <title>GitHubBlog</title>
+    <link href="http://yoursite.com/2020/02/05/githubBlog/"/>
+    <id>http://yoursite.com/2020/02/05/githubBlog/</id>
+    <published>2020-02-05T12:15:56.000Z</published>
+    <updated>2020-02-14T08:25:26.220Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&quot;https://hexo.io/docs/troubleshooting.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&quot;Quick-Start&quot;&gt;&lt;a href=&quot;#Quick-Start&quot; class=&quot;headerlink&quot; title=&quot;Quick Start&quot;&gt;&lt;/a&gt;Quick Start&lt;/h2&gt;&lt;h3 id=&quot;Create-a-new-post&quot;&gt;&lt;a href=&quot;#Create-a-new-post&quot; class=&quot;headerlink&quot; title=&quot;Create a new post&quot;&gt;&lt;/a&gt;Create a new post&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo new &lt;span class=&quot;string&quot;&gt;&quot;My New Post&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+      &lt;h2 id=&quot;Welcome&quot;&gt;&lt;a href=&quot;#Welcome&quot; class=&quot;headerlink&quot; title=&quot;Welcome!&quot;&gt;&lt;/a&gt;Welcome!&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;This is my very first personal blog on GitHub.&lt;/strong&gt;&lt;br&gt;&lt;strong&gt;&lt;a href=&quot;https://lynn-zuo.github.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://lynn-zuo.github.io/&lt;/a&gt;&lt;/strong&gt;&lt;br&gt;&lt;strong&gt;Thanks for the author Shen-Yu’s blog theme: hexo-theme-ayer. The website of sourcecode is &lt;a href=&quot;https://github.com/Shen-Yu/hexo-theme-ayer&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://github.com/Shen-Yu/hexo-theme-ayer&lt;/a&gt;.&lt;/strong&gt;&lt;/p&gt;
     
     </summary>
     
     
+    
+      <category term="notes" scheme="http://yoursite.com/tags/notes/"/>
     
   </entry>
   
