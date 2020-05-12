@@ -10,20 +10,20 @@
   </title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   
-  <link rel="shortcut icon" href="/images/favicon.ico" />
+  <link rel="shortcut icon" href="/lynn_blog/images/favicon.ico" />
   
   
-<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/lynn_blog/css/style.css">
 
   
-<script src="/js/pace.min.js"></script>
+<script src="/lynn_blog/js/pace.min.js"></script>
 
-
-  
 
   
 
-<link rel="alternate" href="/atom.xml" title="Lynn" type="application/atom+xml">
+  
+
+<link rel="alternate" href="/lynn_blog/atom.xml" title="Lynn" type="application/atom+xml">
 </head>
 
 </html>
@@ -36,10 +36,10 @@
     
   <div class="cover-frame">
     <div class="bg-box">
-      <img src="/images/cover4.jpg" alt="image frame" />
+      <img src="/lynn_blog/images/cover4.jpg" alt="image frame" />
     </div>
     <div class="cover-inner text-center text-white">
-      <h1><a href="/">Lynn</a></h1>
+      <h1><a href="/lynn_blog/">Lynn</a></h1>
       <div id="subtitle-box">
         
         <span id="subtitle"></span>
@@ -66,6 +66,83 @@
     
     
     
+    <article id="post-Vue组件编写之Alert提示框组件编写" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/lynn_blog/2020/05/11/Vue%E7%BB%84%E4%BB%B6%E7%BC%96%E5%86%99%E4%B9%8BAlert%E6%8F%90%E7%A4%BA%E6%A1%86%E7%BB%84%E4%BB%B6%E7%BC%96%E5%86%99/"
+    >Alert提示框的vue局部组件编写</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/lynn_blog/2020/05/11/Vue%E7%BB%84%E4%BB%B6%E7%BC%96%E5%86%99%E4%B9%8BAlert%E6%8F%90%E7%A4%BA%E6%A1%86%E7%BB%84%E4%BB%B6%E7%BC%96%E5%86%99/" class="article-date">
+  <time datetime="2020-05-11T10:43:32.000Z" itemprop="datePublished">2020-05-11</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/lynn_blog/categories/%E5%AD%A6%E4%B9%A0/">学习</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h2 id="Alert提示框的vue局部组件编写"><a href="#Alert提示框的vue局部组件编写" class="headerlink" title="Alert提示框的vue局部组件编写"></a>Alert提示框的vue局部组件编写</h2><p>最近一直学习vue，跟着视频敲代码，敲了两三个组件后，终于对编写组件有一个大致的思路了，以下通过编写一个alert提示框组件大致梳理一下我编写组件的思路。<br>主要分为三个部分：组件引入(注册路由器)、定义组件内容样式及实现组件间通信。</p>
+<p>(注册路由器使用路由组件也可放到最后一步，个人习惯先引入然后定义组件及样式便于观察组件显示效果)</p>
+<p>下面是引入本组件使用显示效果，通过登匹配验证为false触发alert提示框显示，点击确认关闭提示框：</p>
+      
+      <a class="article-more-link" href="/lynn_blog/2020/05/11/Vue%E7%BB%84%E4%BB%B6%E7%BC%96%E5%86%99%E4%B9%8BAlert%E6%8F%90%E7%A4%BA%E6%A1%86%E7%BB%84%E4%BB%B6%E7%BC%96%E5%86%99/">阅读更多...</a>
+      
+      
+      <!-- Reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/lynn_blog/tags/Vue/" rel="tag">Vue</a></li></ul>
+
+      
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
     <article id="post-情人节表白神器" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -74,7 +151,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/02/13/%E6%83%85%E4%BA%BA%E8%8A%82%E8%A1%A8%E7%99%BD%E7%A5%9E%E5%99%A8/"
+  <a class="article-title" href="/lynn_blog/2020/02/13/%E6%83%85%E4%BA%BA%E8%8A%82%E8%A1%A8%E7%99%BD%E7%A5%9E%E5%99%A8/"
     >情人节表白神器</a
   >
 </h2>
@@ -85,12 +162,12 @@
 
     
     <div class="article-meta">
-      <a href="/2020/02/13/%E6%83%85%E4%BA%BA%E8%8A%82%E8%A1%A8%E7%99%BD%E7%A5%9E%E5%99%A8/" class="article-date">
+      <a href="/lynn_blog/2020/02/13/%E6%83%85%E4%BA%BA%E8%8A%82%E8%A1%A8%E7%99%BD%E7%A5%9E%E5%99%A8/" class="article-date">
   <time datetime="2020-02-13T14:09:32.000Z" itemprop="datePublished">2020-02-13</time>
 </a>
       
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%94%9F%E6%B4%BB/">生活</a>
+    <a class="article-category-link" href="/lynn_blog/categories/%E7%94%9F%E6%B4%BB/">生活</a>
   </div>
 
       
@@ -113,7 +190,7 @@
 <p>“难不成我还能是一条狗？”</p>
 <p>嘻嘻嘻，祝大家情人节快乐呀！虽然疫情使得大家在这个情人节被异地了，甚至于成为小哥哥小姐姐们脱单之路上的拦路虎，但是我们可以更多点联系与互动，来表达自己的喜爱与思念呀，比如~线上表白系列来咯！ <em>^O^</em> </p>
       
-      <a class="article-more-link" href="/2020/02/13/%E6%83%85%E4%BA%BA%E8%8A%82%E8%A1%A8%E7%99%BD%E7%A5%9E%E5%99%A8/">阅读更多...</a>
+      <a class="article-more-link" href="/lynn_blog/2020/02/13/%E6%83%85%E4%BA%BA%E8%8A%82%E8%A1%A8%E7%99%BD%E7%A5%9E%E5%99%A8/">阅读更多...</a>
       
       
       <!-- Reward -->
@@ -126,7 +203,7 @@
     <footer class="article-footer">
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/notes/" rel="tag">notes</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/lynn_blog/tags/Python/" rel="tag">Python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/lynn_blog/tags/notes/" rel="tag">notes</a></li></ul>
 
       
     </footer>
@@ -151,7 +228,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/02/08/firstBlog-path/"
+  <a class="article-title" href="/lynn_blog/2020/02/08/firstBlog-path/"
     >记录Gitee+Hexo搭建博客主题样式及图片不显示问题</a
   >
 </h2>
@@ -162,12 +239,12 @@
 
     
     <div class="article-meta">
-      <a href="/2020/02/08/firstBlog-path/" class="article-date">
+      <a href="/lynn_blog/2020/02/08/firstBlog-path/" class="article-date">
   <time datetime="2020-02-08T14:12:45.000Z" itemprop="datePublished">2020-02-08</time>
 </a>
       
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%AD%A6%E4%B9%A0/">学习</a>
+    <a class="article-category-link" href="/lynn_blog/categories/%E5%AD%A6%E4%B9%A0/">学习</a>
   </div>
 
       
@@ -189,7 +266,7 @@
       <h2 id="主题样式及图片不显示问题"><a href="#主题样式及图片不显示问题" class="headerlink" title="主题样式及图片不显示问题"></a>主题样式及图片不显示问题</h2><p>使用<strong>Git+Hexo+GitHub/Gitee搭建个人博客</strong>的详细准确教程网上有很多，本人也是按照网上大佬们的教程进行操作的，这里不再重复，本文主要记录一下在搭建个人博客时遇到的几点问题，供已经了解搭建流程并存在类似问题的同学阅读交流。</p>
 <p>首先是搭建基于Git+Hexo+GitHub的个人博客，基本没什么问题就实现了，但实现后发现个人博客网页刷新实在是慢。于是选择Gitee（码云）建仓库搭建博客，然而遇到了一些路径问题，问题一解决比较简单，此处略作记录；问题二鲜少有提及，此处仅针对我尝试并成功的修改做说明。</p>
       
-      <a class="article-more-link" href="/2020/02/08/firstBlog-path/">阅读更多...</a>
+      <a class="article-more-link" href="/lynn_blog/2020/02/08/firstBlog-path/">阅读更多...</a>
       
       
       <!-- Reward -->
@@ -202,7 +279,78 @@
     <footer class="article-footer">
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Blogs/" rel="tag">Blogs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Gitee/" rel="tag">Gitee</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/lynn_blog/tags/Blogs/" rel="tag">Blogs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/lynn_blog/tags/Gitee/" rel="tag">Gitee</a></li></ul>
+
+      
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-myGiteeBlog" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/lynn_blog/2020/02/06/myGiteeBlog/"
+    >GiteeBlog</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/lynn_blog/2020/02/06/myGiteeBlog/" class="article-date">
+  <time datetime="2020-02-06T14:32:18.000Z" itemprop="datePublished">2020-02-06</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h2 id="Welcome"><a href="#Welcome" class="headerlink" title="Welcome!"></a>Welcome!</h2><p><strong>This is my very first personal blog on Gitee.</strong><br><strong><a href="https://lynn-zuo.gitee.io/lynn_blog">https://lynn-zuo.gitee.io/lynn_blog</a></strong><br><strong>Thanks for the author Shen-Yu’s blog theme: hexo-theme-ayer. The website of sourcecode is <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank" rel="noopener">https://github.com/Shen-Yu/hexo-theme-ayer</a>.</strong></p>
+      
+      <a class="article-more-link" href="/lynn_blog/2020/02/06/myGiteeBlog/">阅读更多...</a>
+      
+      
+      <!-- Reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/lynn_blog/tags/notes/" rel="tag">notes</a></li></ul>
 
       
     </footer>
@@ -227,7 +375,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/02/06/hello-world/"
+  <a class="article-title" href="/lynn_blog/2020/02/06/hello-world/"
     >Hello World</a
   >
 </h2>
@@ -238,7 +386,7 @@
 
     
     <div class="article-meta">
-      <a href="/2020/02/06/hello-world/" class="article-date">
+      <a href="/lynn_blog/2020/02/06/hello-world/" class="article-date">
   <time datetime="2020-02-06T14:30:00.000Z" itemprop="datePublished">2020-02-06</time>
 </a>
       
@@ -261,7 +409,7 @@
       <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
       
-      <a class="article-more-link" href="/2020/02/06/hello-world/">阅读更多...</a>
+      <a class="article-more-link" href="/lynn_blog/2020/02/06/hello-world/">阅读更多...</a>
       
       
       <!-- Reward -->
@@ -274,78 +422,7 @@
     <footer class="article-footer">
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/notes/" rel="tag">notes</a></li></ul>
-
-      
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-githubBlog" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/02/05/githubBlog/"
-    >GitHubBlog</a
-  >
-</h2>
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/02/05/githubBlog/" class="article-date">
-  <time datetime="2020-02-05T12:15:56.000Z" itemprop="datePublished">2020-02-05</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <h2 id="Welcome"><a href="#Welcome" class="headerlink" title="Welcome!"></a>Welcome!</h2><p><strong>This is my very first personal blog on GitHub.</strong><br><strong><a href="https://lynn-zuo.github.io/" target="_blank" rel="noopener">https://lynn-zuo.github.io/</a></strong><br><strong>Thanks for the author Shen-Yu’s blog theme: hexo-theme-ayer. The website of sourcecode is <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank" rel="noopener">https://github.com/Shen-Yu/hexo-theme-ayer</a>.</strong></p>
-      
-      <a class="article-more-link" href="/2020/02/05/githubBlog/">阅读更多...</a>
-      
-      
-      <!-- Reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/notes/" rel="tag">notes</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/lynn_blog/tags/notes/" rel="tag">notes</a></li></ul>
 
       
     </footer>
@@ -416,37 +493,37 @@
 <nav class="navbar">
   
   <div class="logo">
-    <a href="/"><img src="/images/ayer-side.svg" alt="Lynn"></a>
+    <a href="/lynn_blog/"><img src="/lynn_blog/images/ayer-side.svg" alt="Lynn"></a>
   </div>
   
   <ul class="nav nav-main">
     
     <li class="nav-item">
-      <a class="nav-item-link" href="/">主页</a>
+      <a class="nav-item-link" href="/lynn_blog/">主页</a>
     </li>
     
     <li class="nav-item">
-      <a class="nav-item-link" href="/archives">归档</a>
+      <a class="nav-item-link" href="/lynn_blog/archives">归档</a>
     </li>
     
     <li class="nav-item">
-      <a class="nav-item-link" href="/categories">分类</a>
+      <a class="nav-item-link" href="/lynn_blog/categories">分类</a>
     </li>
     
     <li class="nav-item">
-      <a class="nav-item-link" href="/tags">标签</a>
+      <a class="nav-item-link" href="/lynn_blog/tags">标签</a>
     </li>
     
     <li class="nav-item">
-      <a class="nav-item-link" href="/travel">旅行</a>
+      <a class="nav-item-link" href="/lynn_blog/travel">旅行</a>
     </li>
     
     <li class="nav-item">
-      <a class="nav-item-link" href="/notes">随笔</a>
+      <a class="nav-item-link" href="/lynn_blog/notes">随笔</a>
     </li>
     
     <li class="nav-item">
-      <a class="nav-item-link" href="/about">关于我</a>
+      <a class="nav-item-link" href="/lynn_blog/about">关于我</a>
     </li>
     
   </ul>
@@ -460,7 +537,7 @@
       </a>
       
       
-      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+      <a class="nav-item-link" target="_blank" href="/lynn_blog/atom.xml" title="RSS Feed">
         <i class="ri-rss-line"></i>
       </a>
       
@@ -483,36 +560,36 @@
   <div class="reward-box">
     
     <div class="reward-item">
-      <img class="reward-img" src="/images/alipay.jpg">
+      <img class="reward-img" src="/lynn_blog/images/alipay.jpg">
       <span class="reward-type">支付宝</span>
     </div>
     
     
     <div class="reward-item">
-      <img class="reward-img" src="/images/wechat.jpg">
+      <img class="reward-img" src="/lynn_blog/images/wechat.jpg">
       <span class="reward-type">微信</span>
     </div>
     
   </div>
 </div>
       
-<script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/lynn_blog/js/jquery-2.0.3.min.js"></script>
 
 
-<script src="/js/jquery.justifiedGallery.min.js"></script>
+<script src="/lynn_blog/js/jquery.justifiedGallery.min.js"></script>
 
 
-<script src="/js/lazyload.min.js"></script>
+<script src="/lynn_blog/js/lazyload.min.js"></script>
 
 
-<script src="/js/busuanzi-2.3.pure.min.js"></script>
+<script src="/lynn_blog/js/busuanzi-2.3.pure.min.js"></script>
 
 
-<script src="/js/share.js"></script>
+<script src="/lynn_blog/js/share.js"></script>
 
 
 
-<script src="/fancybox/jquery.fancybox.min.js"></script>
+<script src="/lynn_blog/fancybox/jquery.fancybox.min.js"></script>
 
 
 
@@ -542,7 +619,7 @@
 </script>
 
 
-<script src="/js/ayer.js"></script>
+<script src="/lynn_blog/js/ayer.js"></script>
 
 
 <script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>

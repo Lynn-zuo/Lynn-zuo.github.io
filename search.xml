@@ -1,99 +1,194 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search> 
-  
-  
-    
-    <entry>
-      <title>情人节表白神器</title>
-      <link href="/2020/02/13/%E6%83%85%E4%BA%BA%E8%8A%82%E8%A1%A8%E7%99%BD%E7%A5%9E%E5%99%A8/"/>
-      <url>/2020/02/13/%E6%83%85%E4%BA%BA%E8%8A%82%E8%A1%A8%E7%99%BD%E7%A5%9E%E5%99%A8/</url>
-      
-        <content type="html"><![CDATA[<h2 id="单身时节又逢君"><a href="#单身时节又逢君" class="headerlink" title="单身时节又逢君"></a>单身时节又逢君</h2><p>“都2020年了，这么浪漫的年份，你还是一个人吗？”</p><p>“难不成我还能是一条狗？”</p><p>嘻嘻嘻，祝大家情人节快乐呀！虽然疫情使得大家在这个情人节被异地了，甚至于成为小哥哥小姐姐们脱单之路上的拦路虎，但是我们可以更多点联系与互动，来表达自己的喜爱与思念呀，比如~线上表白系列来咯！ <em>^O^</em> </p><a id="more"></a><h2 id="用Python助你脱单"><a href="#用Python助你脱单" class="headerlink" title="用Python助你脱单"></a>用Python助你脱单</h2><p>今天在微信公众号看到一篇推文，<a href="https://mp.weixin.qq.com/s/KPEyh_SvvphRiw-ZfMcIHw" target="_blank" rel="noopener" title="情人节来了，教你个用Python表白的技巧">情人节来了，教你个用Python表白的技巧</a>，感觉还挺有意思的。看完文章我也亲自实验了一下，制作了几张表白图片发给小姐妹，嘻嘻，撩妹技能+1。源码也附上了，大家只要对应改下自己的图片路径就能实现啦！字体样式和大小也可以按照自己心意修改。</p><p>以下是文章内容，包括技术分析和代码实现：</p><p>明哥今天来教你如何使用 Python 来向心中的女神表白。<br>前段时间，在微博上刷到了一条推荐。内容是这样的：<br><img src="1.jpg" alt="微博图片" title="微博图片"><br>出于好奇，我点开了，放大再放大，emmm，有点意思吖…<br><img src="2.jpg" alt="放大图片" title="放大图片"></p><p>这四个字，对于像我这样腼腆的DS男来说，还真不好意思说，说出来，万一被拒绝了咋办？</p><p>使用套路来表白，并观察对方的反应，你大概能清楚对方是否对你也有好感，先测试下自己有几成的把握再下手或许更稳妥。</p><p>今天就教大家一个这样的套路：如何使用 Python 来做出来这样的图，有点浪漫，又有点极客。能不能拿下你女神，就要靠你（命）了。(๑•́₃ •̀๑)</p><h3 id="思路分析"><a href="#思路分析" class="headerlink" title="思路分析"></a>思路分析</h3><p>首先，你得先找到一张你女神的高清图片（尽量分辨率高点的吧，效果会好点）。</p><p>这里我以一张高圆圆的图来做一下演示，原图是这样的（分辨率是：2000*1328）。<br><img src="3.jpg" alt="高圆圆原图" title="高圆圆原图"><br>使用我写好的脚本运行后，就生成了这样一张图，请你点击，放大再放大。（惊喜？<br><img src="4.jpg" alt="高圆圆生成图" title="高圆圆生成图"></p><p>然后将这张图片发给你的女神，具体话术你自己想咯。</p><p>好吧，相比女神来说，你可能更在意这是如何实现的（活该你单身）。</p><p>其实原理很简单，代码也还不到20 行。</p><p>首先，来讲讲原理。</p><p>事实上，每一张图片都是由一个一个的像素点所组成的。而每个像素点，都有自己的颜色，其颜色可以用一个数组来表示：(a,b,c)，其中每位数的取值范围都是 0-255。</p><p>比如(0,0,0)代表黑色，(255,255,255)代表白色。</p><p>当像素点足够多的时候，这张照片就是我们所说的高清照片。</p><p>而如果当像素点太少，我们的肉眼就能感知到明显的锯齿感。</p><p>用 Excel 画了个图，每一方格代表一个像素，其中若我的字体的大小设置 5（非字号5，而是每个字占用5个像素），效果大概就是如下这样子。<br><img src="5.png" alt="我喜欢你" title="我喜欢你"><br>我只要每个像素取出一个像素值，并使用这个像素做为该字的颜色即可，在像素量够多的情况下，从远处看，是能看到我们原来图像的轮廓的。</p><p>有了思路，就可以开始我们的代码。</p><h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><p>首先，使用 pillow.Image读取图像，并使用load函数获取到每一个像素值。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">img_raw = Image.open(img_path)</span><br><span class="line">img_array = img_raw.load()</span><br></pre></td></tr></table></figure><p>然后新建一张画布，并选好你要使用的字体和字体大小。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">img_new = Image.new(<span class="string">"RGB"</span>, img_raw.size, (<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>))</span><br><span class="line">draw = ImageDraw.Draw(img_new)</span><br><span class="line">font = ImageFont.truetype(<span class="string">'C:/Windows/fonts/Dengl.ttf'</span>, font_size)</span><br></pre></td></tr></table></figure><p>由于需要不断循环 “我喜欢你！”，这五个字符。所以这里可以while循环 yield 来实现一个生成器。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">character_generator</span><span class="params">(text)</span>:</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(text)):</span><br><span class="line">            <span class="keyword">yield</span> text[i]</span><br></pre></td></tr></table></figure><p>最后，要给这些字加上相应的颜色，写入新创建的画布中。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> y <span class="keyword">in</span> range(<span class="number">0</span>, img_raw.size[<span class="number">1</span>], font_size):</span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">0</span>, img_raw.size[<span class="number">0</span>], font_size):</span><br><span class="line">        draw.text((x, y), next(ch_gen), font=font, fill=img_array[x, y], direction=<span class="literal">None</span>)</span><br></pre></td></tr></table></figure><p>最后将成品保存</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">img_new.convert(<span class="string">'RGB'</span>).save(<span class="string">"F://gyy_save.jpeg"</span>)</span><br></pre></td></tr></table></figure><h3 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h3><p>完整代码如下，供你参考</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image, ImageDraw, ImageFont  </span><br><span class="line"><span class="comment"># 需安装pillow</span></span><br><span class="line"></span><br><span class="line">font_size = <span class="number">13</span>    <span class="comment"># 字体大小</span></span><br><span class="line">text = <span class="string">"我喜欢你！"</span>   <span class="comment"># 文本内容，可更换</span></span><br><span class="line">img_path = <span class="string">"D://Users//Lynn//Pictures//Photos//Q3.jpg"</span>   <span class="comment"># 图片路径,需要更换</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 图片及像素点加载</span></span><br><span class="line">img_raw = Image.open(img_path)</span><br><span class="line">img_array = img_raw.load()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 新画布，背景黑色</span></span><br><span class="line">img_new = Image.new(<span class="string">"RGB"</span>, img_raw.size, (<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>))</span><br><span class="line">draw = ImageDraw.Draw(img_new)</span><br><span class="line">font = ImageFont.truetype(<span class="string">'C:/Windows/Fonts/STXINGKA.TTF'</span>, font_size)  <span class="comment"># 字体</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">character_generator</span><span class="params">(text)</span>:</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(text)):</span><br><span class="line">            <span class="keyword">yield</span> text[i]</span><br><span class="line">        </span><br><span class="line">ch_gen = character_generator(text)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> y <span class="keyword">in</span> range(<span class="number">0</span>, img_raw.size[<span class="number">1</span>], font_size):</span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">0</span>, img_raw.size[<span class="number">0</span>], font_size):</span><br><span class="line">        draw.text((x,y), next(ch_gen), font=font, fill=img_array[x,y], direction=<span class="literal">None</span>)</span><br><span class="line"></span><br><span class="line">img_new.convert(<span class="string">'RGB'</span>).save(<span class="string">"D://Users//Lynn//Pictures//Photos//Q3_save.jpg"</span>)</span><br></pre></td></tr></table></figure><h3 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h3><p>最后再多上几张效果图吧（对，我是海贼迷）。<br>1.路飞<br><img src="6.jpg" alt="路飞" title="路飞"><br>2.索隆<br><img src="7.jpg" alt="索隆" title="索隆"><br>3.山治<br><img src="8.jpg" alt="山治" title="山治"></p><h2 id="助你避坑，祝你成功"><a href="#助你避坑，祝你成功" class="headerlink" title="助你避坑，祝你成功"></a>助你避坑，祝你成功</h2><p>以下是我(Lynn)实验过程中遇到的一点小小问题，因为是新电脑，重新安装的Python环境，所以python小白一定不要错过呀，补充在这里希望大家避坑<em>^O^</em>~</p><ul><li>Q1：无 module PIL<br>当然是先安装PIL啦！因为PIL包含在pillow中，所以直接安装pillow就好。<br>网上也有相应pillow安装，直接<code>pip install PIL</code>就好，但是安装过程中会报错：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ERROR: Could not find a version that satisfies the requirement PTL (from versions: none)</span><br><span class="line">ERROR: No matching distribution found for PTL</span><br></pre></td></tr></table></figure>后来我找到一个有用的解决方法：</li></ul><p>首先，找一个非官方的64位大家通用的PIL安装，打开网址 <a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/" target="_blank" rel="noopener">http://www.lfd.uci.edu/~gohlke/pythonlibs/</a>(比较慢，大家耐心等一等),搜索PIL（ctrl+F），找到下面的图片所示，如果你的python是2.7版本就下载cp27的，3.7就下载cp37.<br><img src="9.png" alt="Pillow" title="Pillow_SIMD-7.0.0.post3-cp37-cp37m-win_amd64.whl"></p><p>还要先安装wheel，打开cmd（win+r），你要先安装pip，具体pip怎么安装这里有很详细的教程<a href="https://www.runoob.com/w3cnote/python-pip-install-usage.html" target="_blank" rel="noopener">Python pip安装与使用</a>，输入<code>pip install wheel</code>后显示安装成功即可。<br>wheel安装好后，找到我们下载好的相应版本的Pillow_SIMD-7.0.0.post3-cp37-cp37m-win_amd64.whl（这是我的版本），我把它放到了C盘用户目录下(cmd中一定要在当前路径下安装)，所以我打开cmd后，直接pip安装即<code>pip install Pillow_SIMD-7.0.0.post3-cp37-cp37m-win_amd64.whl</code>就成功了，会显示安装成功，因为我已经安装成功了，后来再安装会显示如下：<br><img src="10.png" alt="Pillow安装成功" title="安装成功"></p><p>成功后就可以直接使用啦！</p><ul><li><p>Q2:图片路径问题<br>一定要注意图片路径，直接复制文件资源管理器之后路径是<code>D:\Users\Lynn\Pictures\Photos、Q3.jpg</code>，这里需要改为<code>D://Users//Lynn//Pictures//Photos//Q3.jpg</code>，即把’&#39;改成’//‘。</p></li><li><p>Q3；图片全黑<br>最后脚本代码也不报错啦，图片也生成啦，可是图片上怎么全黑的呢？文本哪里去了呢？<br>原因如下：图片全黑是因为背景色用的是黑(0，0，0)，这个是可以在下面代码中改的：<code>img_new = Image.new(&quot;RGB&quot;, img_raw.size, (0, 0, 0))</code></p></li></ul><p>那么字体不显示则是因为字体路径出错或者是字体源文件不存在，因为你的电脑中可能没有源作者用的特殊字体，具体解决方法是：windows系统在路径<code>C：/Windows/fonts/</code>下，找一个字体文件，点击右键查看属性(一定要查看属性名带后缀)，里面有真实的字体英文名，查看不了属性的字体不要使用，用了就是图片全黑。</p><p>最后运行脚本，去对应目录下查看生成的表白图片就可以啦！<br>代码我运行过是没有问题的，大家copy后修改下图片路径就OK。所以这里展示的是不使用编辑器直接在cmd中调用python脚本运行的方式：<br><img src="11.png" alt="生成表白图片" title="生成表白图片"></p><p><strong>图片大小和文本大小会影响图片生成速度哦！</strong></p><h2 id="更新：批量处理"><a href="#更新：批量处理" class="headerlink" title="更新：批量处理"></a>更新：批量处理</h2><p>这里是在阅读崔庆才老师更文，文章提供的修改成批量处理方式的代码。应用于你有多张图片需要生成时,可以放到inputs文件夹下，它会顺次处理并输出到outputs文件夹下，也不用再一个个定义图片名称啦。</p><p>其中增加了一个参数叫做font_space，原来的代码生成的字可能会有点紧凑，这里增加这个参数可以控制字与字之间的距离，比如font_size=1，字间距就是字的大小，排布紧密，如果改大一点比如font_size=1。2，字间距就会变成字的1.2倍，会留有字大小的0.2倍的空隙。</p><h3 id="完整代码-1"><a href="#完整代码-1" class="headerlink" title="完整代码"></a>完整代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image, ImageDraw, ImageFont</span><br><span class="line"><span class="keyword">from</span> glob <span class="keyword">import</span> glob</span><br><span class="line"><span class="keyword">from</span> os.path <span class="keyword">import</span> basename, join</span><br><span class="line"></span><br><span class="line"><span class="comment"># 字体大小</span></span><br><span class="line">font_size = <span class="number">9</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 字体间距， 1 间距正好为字体大小，紧凑排布； 1.2 为字体大小的1.2倍</span></span><br><span class="line">font_space = <span class="number">1.2</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 绘制文本</span></span><br><span class="line">text = <span class="string">"我喜欢你！"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 字体文件的路径</span></span><br><span class="line">font_file = <span class="string">'C:/Windows/Fonts/STXINGKA.TTF'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 输入图片路径</span></span><br><span class="line">inputs_folder = <span class="string">"D://Users//Lynn//Pictures//Photos//multi//inputs"</span>  <span class="comment"># 此处更换自己原图路径</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出图片路径</span></span><br><span class="line">outputs_folder = <span class="string">"D://Users//Lynn//Pictures//Photos//multi//outputs"</span>    <span class="comment"># 此处更换生成图片路径</span></span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">process</span><span class="params">(path)</span>:</span></span><br><span class="line">    img_raw = Image.open(path)</span><br><span class="line">    img_array = img_raw.load()</span><br><span class="line">    img_new = Image.new(<span class="string">'RGB'</span>, img_raw.size, (<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>))</span><br><span class="line">    draw = ImageDraw.Draw(img_new)</span><br><span class="line">    font = ImageFont.truetype(font_file,size=font_size)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">character_generator</span><span class="params">(text)</span>:</span></span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(len(text)):</span><br><span class="line">                <span class="keyword">yield</span> text[i]</span><br><span class="line">    </span><br><span class="line">    ch_gen = character_generator(text)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> y <span class="keyword">in</span> range(<span class="number">00</span>, img_raw.size[<span class="number">1</span>], font_size):</span><br><span class="line">        <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">0</span>, img_raw.size[<span class="number">0</span>], int(font_size * font_space)):</span><br><span class="line">            draw.text((x,y), next(ch_gen), font=font, fill=img_array[x,y], direction=<span class="literal">None</span>)</span><br><span class="line">        </span><br><span class="line">    img_new.convert(<span class="string">'RGB'</span>).save(join(outputs_folder, basename(path)))</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    <span class="keyword">for</span> path <span class="keyword">in</span> glob(join(inputs_folder, <span class="string">'*'</span>)):</span><br><span class="line">        print(<span class="string">"starting processing"</span>, path)</span><br><span class="line">        process(path)</span><br><span class="line">        print(<span class="string">"finished processing"</span>, path)</span><br></pre></td></tr></table></figure><p><strong>最后祝各位成功脱单！</strong></p>]]></content>
-      
-      
+<search>
+  <entry>
+    <title>Alert提示框的vue局部组件编写</title>
+    <url>/lynn_blog/2020/05/11/Vue%E7%BB%84%E4%BB%B6%E7%BC%96%E5%86%99%E4%B9%8BAlert%E6%8F%90%E7%A4%BA%E6%A1%86%E7%BB%84%E4%BB%B6%E7%BC%96%E5%86%99/</url>
+    <content><![CDATA[<h2 id="Alert提示框的vue局部组件编写"><a href="#Alert提示框的vue局部组件编写" class="headerlink" title="Alert提示框的vue局部组件编写"></a>Alert提示框的vue局部组件编写</h2><p>最近一直学习vue，跟着视频敲代码，敲了两三个组件后，终于对编写组件有一个大致的思路了，以下通过编写一个alert提示框组件大致梳理一下我编写组件的思路。<br>主要分为三个部分：组件引入(注册路由器)、定义组件内容样式及实现组件间通信。</p>
+<p>(注册路由器使用路由组件也可放到最后一步，个人习惯先引入然后定义组件及样式便于观察组件显示效果)</p>
+<p>下面是引入本组件使用显示效果，通过登匹配验证为false触发alert提示框显示，点击确认关闭提示框：</p>
+<a id="more"></a>
+<p><img src="alert_1.png" alt="alert提示框显示效果" title="alert提示框显示效果"></p>
+<h4 id="组件引入"><a href="#组件引入" class="headerlink" title="组件引入"></a>组件引入</h4><p>一种是写入路由，要先在在router.js中配置路由：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">routes: [&#123;path:&#39;&#39;, component:&#39;&#39;&#125;]]</span><br></pre></td></tr></table></figure>
+<p>通过路由组件标签</p>
+<figure class="highlight plain"><figcaption><span>to</span></figcaption><table><tr><td class="code"><pre><span class="line">注册路由器;</span><br><span class="line">另一种是通过import方式在父组件中引入，通过路由组件标签</span><br><span class="line">&#96;&#96;&#96;&lt;router-view &#x2F;&gt;&#96;&#96;&#96;注册路由器，本文通过第二种方式注册路由器：</span><br></pre></td></tr></table></figure>
+<p>import AlertTip from ‘@/components/AlertTip’</p>
+<p>export default {<br>  components: {<br>    AlertTip // 忘记会报错：’AlertTip’ is defined but never used<br>  }<br>}</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">#### 定义组件内容及样式</span><br><span class="line">本文演示的alert提示框组件的定义内容如下：</span><br></pre></td></tr></table></figure>
+<div id="dialog" class="dialog_container">
+<!--提示框容器-->
+    <section class="alert_container">
+      <!--提示内容容器-->
+      <div class="alert_content">
+        <div class="tip_icon">
+          <i class="el-icon-warning"></i>
+          <span>提示信息</span>
+        </div>
+        <!--提示信息，接收父组件传来的参数-->
+        <p class="tip_text"></p>
+      </div>
+      <!--确认事件传递回父组件-->
+      <button class="confirm" @click="closeTip">确认</button>
+    </section>
+  </div>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">提示框主要样式——实现提示框位置及显示，一般采用的样式书写方式如下：</span><br></pre></td></tr></table></figure>
+.dialog_container {
+  // 提示框位置及显示一般样式
+  position: fixed;
+  z-index: 9999; // 最上层
+  left:50%;
+  top:50%;
+}
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">提示框内提示文本及按钮样式根据类标签选择器自行编写。</span><br><span class="line"></span><br><span class="line">#### 组件间通信</span><br><span class="line">引入组件并定义好组件内容样式之后，要考虑的就是组件间通过参数传递进行通信。主要是父组件向子组件传递提示文本，子组件向父组件传递按钮点击事件状态。本文所演示提示框组件主要是通过自定义事件进行父子组件间通信。</span><br></pre></td></tr></table></figure>
+ props: {
+    alertText: String // 初始化显示声明类型
+  },
+  methods: {
+    closeTip () {
+      // 分发自定义事件（事件名:closeTip）
+      this.$emit('closeTip')
+    }
+  }
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">在父组件中引入子组件时添加需要传递的参数及事件：</span><br></pre></td></tr></table></figure>
+<AlertTip :alertText="alertText" v-show="alertShow" @closeTip="closeTip"/>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">在父组件中通过调用showAlert()方法传入alertText参数值:</span><br></pre></td></tr></table></figure>
+showAlert (alertText) {
+  this.alertShow = true, // 是否显示提示框组件
+  this.alertText = alertText
+}
+```
+
+<p>至此，将代码整合到一起，就得到一个可以动态显示的提示框组件了。<br>目前还是前端小白一枚，所以不足之处还希望大家多多指正呀！</p>
+]]></content>
       <categories>
-          
-          <category> 生活 </category>
-          
+        <category>学习</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> notes </tag>
-            
-            <tag> Python </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>记录Gitee+Hexo搭建博客主题样式及图片不显示问题</title>
-      <link href="/2020/02/08/firstBlog-path/"/>
-      <url>/2020/02/08/firstBlog-path/</url>
-      
-        <content type="html"><![CDATA[<h2 id="主题样式及图片不显示问题"><a href="#主题样式及图片不显示问题" class="headerlink" title="主题样式及图片不显示问题"></a>主题样式及图片不显示问题</h2><p>使用<strong>Git+Hexo+GitHub/Gitee搭建个人博客</strong>的详细准确教程网上有很多，本人也是按照网上大佬们的教程进行操作的，这里不再重复，本文主要记录一下在搭建个人博客时遇到的几点问题，供已经了解搭建流程并存在类似问题的同学阅读交流。</p><p>首先是搭建基于Git+Hexo+GitHub的个人博客，基本没什么问题就实现了，但实现后发现个人博客网页刷新实在是慢。于是选择Gitee（码云）建仓库搭建博客，然而遇到了一些路径问题，问题一解决比较简单，此处略作记录；问题二鲜少有提及，此处仅针对我尝试并成功的修改做说明。</p><a id="more"></a><h3 id="P1：本地（localhost-4000）显示正确但上传到Gitee后主题样式不显示"><a href="#P1：本地（localhost-4000）显示正确但上传到Gitee后主题样式不显示" class="headerlink" title="P1：本地（localhost:4000）显示正确但上传到Gitee后主题样式不显示"></a>P1：本地（localhost:4000）显示正确但上传到Gitee后主题样式不显示</h3><p>此时显示如下图所示，因为这是后来测试时截的图，图片路径已设置好，故此时图片显示正确，但样式无法显示：<br><img src="1.png" alt="不显示主题样式" title="不显示主题样式"><br>在所建博客本地仓库目录下的_config.yml文件中如下位置做出如下修改：<br><img src="2.png" alt="root路径修改" title="root路径修改"><br>按照注释中修改如下：<br><img src="3.png" alt="url及root路径修改" title="url及root路径修改">  </p><h5 id="Ps-在搜索与尝试过程中发现，仅修改root路径也可使样式正确显示，url可以不做修改。"><a href="#Ps-在搜索与尝试过程中发现，仅修改root路径也可使样式正确显示，url可以不做修改。" class="headerlink" title="Ps:在搜索与尝试过程中发现，仅修改root路径也可使样式正确显示，url可以不做修改。"></a>Ps:在搜索与尝试过程中发现，仅修改root路径也可使样式正确显示，url可以不做修改。</h5><h3 id="P2：主题样式成功显示，但上传到Gitee后主题图片不显示"><a href="#P2：主题样式成功显示，但上传到Gitee后主题图片不显示" class="headerlink" title="P2：主题样式成功显示，但上传到Gitee后主题图片不显示"></a>P2：主题样式成功显示，但上传到Gitee后主题图片不显示</h3><p>经过修改root路径后，样式可以成功显示，但又发现主题图片无法显示，此时主页刷新（多刷新几次）显示如下图所示：<br><img src="4.png" alt="不显示主题图片" title="不显示主题图片"><br>查看源代码，看到图片位置显示alt内容能够想到应该是图片路径问题，在主题路径下的_config.yml文件内修改图片路径，经过多次尝试更改路径，图标、Logo及Cover路径改为相对路径即images/favicon.ico、images/ayer-side.svg和images/cover4.jpg时能够成功显示主页图片及侧边栏Logo，但网页标题图片无法显示且当导航到其他页面时，侧边栏Logo仍无法正常显示：<br><img src="5.png" alt="不显示网页标题图标"><br><img src="6.png" alt="不显示侧边栏Logo"><br>修改主要注意以下两点：1、将图片相对路径改为绝对路径；2、此处绝对路径为Gitee上个人博客远程仓库上的绝对路径。<br><img src="7.png" alt="修改图片绝对路径"><br>修改后博客页面即可正常显示:<br><img src="8.png" alt="博客页面正常显示"><br>在GitHub上完全没有遇到以上路径问题，而且看其他大佬教程中也没有提到这个问题，应该跟我Gitee Pages生成的网站地址有关，比别人多了 <strong>/lynn_blog</strong>。<br><img src="10.png" alt="博客页面正常显示"></p><h3 id="P3：fatal-not-a-git-repository-or-not-any-parent-up-to-mount-point-mnt"><a href="#P3：fatal-not-a-git-repository-or-not-any-parent-up-to-mount-point-mnt" class="headerlink" title="P3：fatal: not a git repository (or not any parent up to mount point /mnt)"></a>P3：fatal: not a git repository (or not any parent up to mount point /mnt)</h3><p>新搭建的博客在仓库主页没有README.md文件，想要新增一个README.md文件，结果在输入git add README.md命令时报错：fatal: not a git repository (or not any parent up to mount point /mnt)。<br>首先进入你新建博客目录下的.deploy_git目录中，添加README.md文件，输入命令$ echo “#Lynn_Blog” &gt;&gt; README.md（该命令可不在.deploy_git目录下进行）和$ git add README.md（该命令必须在.deploy_git目录下进行，否则报错）也不会报错，原因是为与远程仓库连接的是.deploy_git目录。<br><img src="9.png" alt="正确路径演示"></p><h4 id="如大家仍有问题或遇到其他问题，欢迎一起交流学习！"><a href="#如大家仍有问题或遇到其他问题，欢迎一起交流学习！" class="headerlink" title="如大家仍有问题或遇到其他问题，欢迎一起交流学习！"></a>如大家仍有问题或遇到其他问题，欢迎一起交流学习！</h4>]]></content>
-      
-      
+      <tags>
+        <tag>Vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>情人节表白神器</title>
+    <url>/lynn_blog/2020/02/13/%E6%83%85%E4%BA%BA%E8%8A%82%E8%A1%A8%E7%99%BD%E7%A5%9E%E5%99%A8/</url>
+    <content><![CDATA[<h2 id="单身时节又逢君"><a href="#单身时节又逢君" class="headerlink" title="单身时节又逢君"></a>单身时节又逢君</h2><p>“都2020年了，这么浪漫的年份，你还是一个人吗？”</p>
+<p>“难不成我还能是一条狗？”</p>
+<p>嘻嘻嘻，祝大家情人节快乐呀！虽然疫情使得大家在这个情人节被异地了，甚至于成为小哥哥小姐姐们脱单之路上的拦路虎，但是我们可以更多点联系与互动，来表达自己的喜爱与思念呀，比如~线上表白系列来咯！ <em>^O^</em> </p>
+<a id="more"></a>
+<h2 id="用Python助你脱单"><a href="#用Python助你脱单" class="headerlink" title="用Python助你脱单"></a>用Python助你脱单</h2><p>今天在微信公众号看到一篇推文，<a href="https://mp.weixin.qq.com/s/KPEyh_SvvphRiw-ZfMcIHw" target="_blank" rel="noopener" title="情人节来了，教你个用Python表白的技巧">情人节来了，教你个用Python表白的技巧</a>，感觉还挺有意思的。看完文章我也亲自实验了一下，制作了几张表白图片发给小姐妹，嘻嘻，撩妹技能+1。源码也附上了，大家只要对应改下自己的图片路径就能实现啦！字体样式和大小也可以按照自己心意修改。</p>
+<p>以下是文章内容，包括技术分析和代码实现：</p>
+<p>明哥今天来教你如何使用 Python 来向心中的女神表白。<br>前段时间，在微博上刷到了一条推荐。内容是这样的：<br><img src="1.jpg" alt="微博图片" title="微博图片"><br>出于好奇，我点开了，放大再放大，emmm，有点意思吖…<br><img src="2.jpg" alt="放大图片" title="放大图片"></p>
+<p>这四个字，对于像我这样腼腆的DS男来说，还真不好意思说，说出来，万一被拒绝了咋办？</p>
+<p>使用套路来表白，并观察对方的反应，你大概能清楚对方是否对你也有好感，先测试下自己有几成的把握再下手或许更稳妥。</p>
+<p>今天就教大家一个这样的套路：如何使用 Python 来做出来这样的图，有点浪漫，又有点极客。能不能拿下你女神，就要靠你（命）了。(๑•́₃ •̀๑)</p>
+<h3 id="思路分析"><a href="#思路分析" class="headerlink" title="思路分析"></a>思路分析</h3><p>首先，你得先找到一张你女神的高清图片（尽量分辨率高点的吧，效果会好点）。</p>
+<p>这里我以一张高圆圆的图来做一下演示，原图是这样的（分辨率是：2000*1328）。<br><img src="3.jpg" alt="高圆圆原图" title="高圆圆原图"><br>使用我写好的脚本运行后，就生成了这样一张图，请你点击，放大再放大。（惊喜？<br><img src="4.jpg" alt="高圆圆生成图" title="高圆圆生成图"></p>
+<p>然后将这张图片发给你的女神，具体话术你自己想咯。</p>
+<p>好吧，相比女神来说，你可能更在意这是如何实现的（活该你单身）。</p>
+<p>其实原理很简单，代码也还不到20 行。</p>
+<p>首先，来讲讲原理。</p>
+<p>事实上，每一张图片都是由一个一个的像素点所组成的。而每个像素点，都有自己的颜色，其颜色可以用一个数组来表示：(a,b,c)，其中每位数的取值范围都是 0-255。</p>
+<p>比如(0,0,0)代表黑色，(255,255,255)代表白色。</p>
+<p>当像素点足够多的时候，这张照片就是我们所说的高清照片。</p>
+<p>而如果当像素点太少，我们的肉眼就能感知到明显的锯齿感。</p>
+<p>用 Excel 画了个图，每一方格代表一个像素，其中若我的字体的大小设置 5（非字号5，而是每个字占用5个像素），效果大概就是如下这样子。<br><img src="5.png" alt="我喜欢你" title="我喜欢你"><br>我只要每个像素取出一个像素值，并使用这个像素做为该字的颜色即可，在像素量够多的情况下，从远处看，是能看到我们原来图像的轮廓的。</p>
+<p>有了思路，就可以开始我们的代码。</p>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><p>首先，使用 pillow.Image读取图像，并使用load函数获取到每一个像素值。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">img_raw = Image.open(img_path)</span><br><span class="line">img_array = img_raw.load()</span><br></pre></td></tr></table></figure>
+
+<p>然后新建一张画布，并选好你要使用的字体和字体大小。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">img_new = Image.new(<span class="string">"RGB"</span>, img_raw.size, (<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>))</span><br><span class="line">draw = ImageDraw.Draw(img_new)</span><br><span class="line">font = ImageFont.truetype(<span class="string">'C:/Windows/fonts/Dengl.ttf'</span>, font_size)</span><br></pre></td></tr></table></figure>
+
+<p>由于需要不断循环 “我喜欢你！”，这五个字符。所以这里可以while循环 yield 来实现一个生成器。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">character_generator</span><span class="params">(text)</span>:</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(text)):</span><br><span class="line">            <span class="keyword">yield</span> text[i]</span><br></pre></td></tr></table></figure>
+
+<p>最后，要给这些字加上相应的颜色，写入新创建的画布中。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> y <span class="keyword">in</span> range(<span class="number">0</span>, img_raw.size[<span class="number">1</span>], font_size):</span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">0</span>, img_raw.size[<span class="number">0</span>], font_size):</span><br><span class="line">        draw.text((x, y), next(ch_gen), font=font, fill=img_array[x, y], direction=<span class="literal">None</span>)</span><br></pre></td></tr></table></figure>
+
+<p>最后将成品保存</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">img_new.convert(<span class="string">'RGB'</span>).save(<span class="string">"F://gyy_save.jpeg"</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h3><p>完整代码如下，供你参考</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image, ImageDraw, ImageFont  </span><br><span class="line"><span class="comment"># 需安装pillow</span></span><br><span class="line"></span><br><span class="line">font_size = <span class="number">13</span>    <span class="comment"># 字体大小</span></span><br><span class="line">text = <span class="string">"我喜欢你！"</span>   <span class="comment"># 文本内容，可更换</span></span><br><span class="line">img_path = <span class="string">"D://Users//Lynn//Pictures//Photos//Q3.jpg"</span>   <span class="comment"># 图片路径,需要更换</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 图片及像素点加载</span></span><br><span class="line">img_raw = Image.open(img_path)</span><br><span class="line">img_array = img_raw.load()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 新画布，背景黑色</span></span><br><span class="line">img_new = Image.new(<span class="string">"RGB"</span>, img_raw.size, (<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>))</span><br><span class="line">draw = ImageDraw.Draw(img_new)</span><br><span class="line">font = ImageFont.truetype(<span class="string">'C:/Windows/Fonts/STXINGKA.TTF'</span>, font_size)  <span class="comment"># 字体</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">character_generator</span><span class="params">(text)</span>:</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(text)):</span><br><span class="line">            <span class="keyword">yield</span> text[i]</span><br><span class="line">        </span><br><span class="line">ch_gen = character_generator(text)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> y <span class="keyword">in</span> range(<span class="number">0</span>, img_raw.size[<span class="number">1</span>], font_size):</span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">0</span>, img_raw.size[<span class="number">0</span>], font_size):</span><br><span class="line">        draw.text((x,y), next(ch_gen), font=font, fill=img_array[x,y], direction=<span class="literal">None</span>)</span><br><span class="line"></span><br><span class="line">img_new.convert(<span class="string">'RGB'</span>).save(<span class="string">"D://Users//Lynn//Pictures//Photos//Q3_save.jpg"</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h3><p>最后再多上几张效果图吧（对，我是海贼迷）。<br>1.路飞<br><img src="6.jpg" alt="路飞" title="路飞"><br>2.索隆<br><img src="7.jpg" alt="索隆" title="索隆"><br>3.山治<br><img src="8.jpg" alt="山治" title="山治"></p>
+<h2 id="助你避坑，祝你成功"><a href="#助你避坑，祝你成功" class="headerlink" title="助你避坑，祝你成功"></a>助你避坑，祝你成功</h2><p>以下是我(Lynn)实验过程中遇到的一点小小问题，因为是新电脑，重新安装的Python环境，所以python小白一定不要错过呀，补充在这里希望大家避坑<em>^O^</em>~</p>
+<ul>
+<li>Q1：无 module PIL<br>当然是先安装PIL啦！因为PIL包含在pillow中，所以直接安装pillow就好。<br>网上也有相应pillow安装，直接<code>pip install PIL</code>就好，但是安装过程中会报错：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ERROR: Could not find a version that satisfies the requirement PTL (from versions: none)</span><br><span class="line">ERROR: No matching distribution found for PTL</span><br></pre></td></tr></table></figure>
+后来我找到一个有用的解决方法：</li>
+</ul>
+<p>首先，找一个非官方的64位大家通用的PIL安装，打开网址 <a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/" target="_blank" rel="noopener">http://www.lfd.uci.edu/~gohlke/pythonlibs/</a>(比较慢，大家耐心等一等),搜索PIL（ctrl+F），找到下面的图片所示，如果你的python是2.7版本就下载cp27的，3.7就下载cp37.<br><img src="9.png" alt="Pillow" title="Pillow_SIMD-7.0.0.post3-cp37-cp37m-win_amd64.whl"></p>
+<p>还要先安装wheel，打开cmd（win+r），你要先安装pip，具体pip怎么安装这里有很详细的教程<a href="https://www.runoob.com/w3cnote/python-pip-install-usage.html" target="_blank" rel="noopener">Python pip安装与使用</a>，输入<code>pip install wheel</code>后显示安装成功即可。<br>wheel安装好后，找到我们下载好的相应版本的Pillow_SIMD-7.0.0.post3-cp37-cp37m-win_amd64.whl（这是我的版本），我把它放到了C盘用户目录下(cmd中一定要在当前路径下安装)，所以我打开cmd后，直接pip安装即<code>pip install Pillow_SIMD-7.0.0.post3-cp37-cp37m-win_amd64.whl</code>就成功了，会显示安装成功，因为我已经安装成功了，后来再安装会显示如下：<br><img src="10.png" alt="Pillow安装成功" title="安装成功"></p>
+<p>成功后就可以直接使用啦！</p>
+<ul>
+<li><p>Q2:图片路径问题<br>一定要注意图片路径，直接复制文件资源管理器之后路径是<code>D:\Users\Lynn\Pictures\Photos、Q3.jpg</code>，这里需要改为<code>D://Users//Lynn//Pictures//Photos//Q3.jpg</code>，即把’&#39;改成’//‘。</p>
+</li>
+<li><p>Q3；图片全黑<br>最后脚本代码也不报错啦，图片也生成啦，可是图片上怎么全黑的呢？文本哪里去了呢？<br>原因如下：图片全黑是因为背景色用的是黑(0，0，0)，这个是可以在下面代码中改的：<code>img_new = Image.new(&quot;RGB&quot;, img_raw.size, (0, 0, 0))</code></p>
+</li>
+</ul>
+<p>那么字体不显示则是因为字体路径出错或者是字体源文件不存在，因为你的电脑中可能没有源作者用的特殊字体，具体解决方法是：windows系统在路径<code>C：/Windows/fonts/</code>下，找一个字体文件，点击右键查看属性(一定要查看属性名带后缀)，里面有真实的字体英文名，查看不了属性的字体不要使用，用了就是图片全黑。</p>
+<p>最后运行脚本，去对应目录下查看生成的表白图片就可以啦！<br>代码我运行过是没有问题的，大家copy后修改下图片路径就OK。所以这里展示的是不使用编辑器直接在cmd中调用python脚本运行的方式：<br><img src="11.png" alt="生成表白图片" title="生成表白图片"></p>
+<p><strong>图片大小和文本大小会影响图片生成速度哦！</strong></p>
+<h2 id="更新：批量处理"><a href="#更新：批量处理" class="headerlink" title="更新：批量处理"></a>更新：批量处理</h2><p>这里是在阅读崔庆才老师更文，文章提供的修改成批量处理方式的代码。应用于你有多张图片需要生成时,可以放到inputs文件夹下，它会顺次处理并输出到outputs文件夹下，也不用再一个个定义图片名称啦。</p>
+<p>其中增加了一个参数叫做font_space，原来的代码生成的字可能会有点紧凑，这里增加这个参数可以控制字与字之间的距离，比如font_size=1，字间距就是字的大小，排布紧密，如果改大一点比如font_size=1。2，字间距就会变成字的1.2倍，会留有字大小的0.2倍的空隙。</p>
+<h3 id="完整代码-1"><a href="#完整代码-1" class="headerlink" title="完整代码"></a>完整代码</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image, ImageDraw, ImageFont</span><br><span class="line"><span class="keyword">from</span> glob <span class="keyword">import</span> glob</span><br><span class="line"><span class="keyword">from</span> os.path <span class="keyword">import</span> basename, join</span><br><span class="line"></span><br><span class="line"><span class="comment"># 字体大小</span></span><br><span class="line">font_size = <span class="number">9</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 字体间距， 1 间距正好为字体大小，紧凑排布； 1.2 为字体大小的1.2倍</span></span><br><span class="line">font_space = <span class="number">1.2</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 绘制文本</span></span><br><span class="line">text = <span class="string">"我喜欢你！"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 字体文件的路径</span></span><br><span class="line">font_file = <span class="string">'C:/Windows/Fonts/STXINGKA.TTF'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 输入图片路径</span></span><br><span class="line">inputs_folder = <span class="string">"D://Users//Lynn//Pictures//Photos//multi//inputs"</span>  <span class="comment"># 此处更换自己原图路径</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出图片路径</span></span><br><span class="line">outputs_folder = <span class="string">"D://Users//Lynn//Pictures//Photos//multi//outputs"</span>    <span class="comment"># 此处更换生成图片路径</span></span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">process</span><span class="params">(path)</span>:</span></span><br><span class="line">    img_raw = Image.open(path)</span><br><span class="line">    img_array = img_raw.load()</span><br><span class="line">    img_new = Image.new(<span class="string">'RGB'</span>, img_raw.size, (<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>))</span><br><span class="line">    draw = ImageDraw.Draw(img_new)</span><br><span class="line">    font = ImageFont.truetype(font_file,size=font_size)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">character_generator</span><span class="params">(text)</span>:</span></span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(len(text)):</span><br><span class="line">                <span class="keyword">yield</span> text[i]</span><br><span class="line">    </span><br><span class="line">    ch_gen = character_generator(text)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> y <span class="keyword">in</span> range(<span class="number">00</span>, img_raw.size[<span class="number">1</span>], font_size):</span><br><span class="line">        <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">0</span>, img_raw.size[<span class="number">0</span>], int(font_size * font_space)):</span><br><span class="line">            draw.text((x,y), next(ch_gen), font=font, fill=img_array[x,y], direction=<span class="literal">None</span>)</span><br><span class="line">        </span><br><span class="line">    img_new.convert(<span class="string">'RGB'</span>).save(join(outputs_folder, basename(path)))</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    <span class="keyword">for</span> path <span class="keyword">in</span> glob(join(inputs_folder, <span class="string">'*'</span>)):</span><br><span class="line">        print(<span class="string">"starting processing"</span>, path)</span><br><span class="line">        process(path)</span><br><span class="line">        print(<span class="string">"finished processing"</span>, path)</span><br></pre></td></tr></table></figure>
+
+<p><strong>最后祝各位成功脱单！</strong></p>
+]]></content>
       <categories>
-          
-          <category> 学习 </category>
-          
+        <category>生活</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> Blogs </tag>
-            
-            <tag> Gitee </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Hello World</title>
-      <link href="/2020/02/06/hello-world/"/>
-      <url>/2020/02/06/hello-world/</url>
-      
-        <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><a id="more"></a><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
-      
-      
-      
-        <tags>
-            
-            <tag> notes </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>GitHubBlog</title>
-      <link href="/2020/02/05/githubBlog/"/>
-      <url>/2020/02/05/githubBlog/</url>
-      
-        <content type="html"><![CDATA[<h2 id="Welcome"><a href="#Welcome" class="headerlink" title="Welcome!"></a>Welcome!</h2><p><strong>This is my very first personal blog on GitHub.</strong><br><strong><a href="https://lynn-zuo.github.io/" target="_blank" rel="noopener">https://lynn-zuo.github.io/</a></strong><br><strong>Thanks for the author Shen-Yu’s blog theme: hexo-theme-ayer. The website of sourcecode is <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank" rel="noopener">https://github.com/Shen-Yu/hexo-theme-ayer</a>.</strong></p><a id="more"></a>]]></content>
-      
-      
-      
-        <tags>
-            
-            <tag> notes </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-  
-  
+      <tags>
+        <tag>notes</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>记录Gitee+Hexo搭建博客主题样式及图片不显示问题</title>
+    <url>/lynn_blog/2020/02/08/firstBlog-path/</url>
+    <content><![CDATA[<h2 id="主题样式及图片不显示问题"><a href="#主题样式及图片不显示问题" class="headerlink" title="主题样式及图片不显示问题"></a>主题样式及图片不显示问题</h2><p>使用<strong>Git+Hexo+GitHub/Gitee搭建个人博客</strong>的详细准确教程网上有很多，本人也是按照网上大佬们的教程进行操作的，这里不再重复，本文主要记录一下在搭建个人博客时遇到的几点问题，供已经了解搭建流程并存在类似问题的同学阅读交流。</p>
+<p>首先是搭建基于Git+Hexo+GitHub的个人博客，基本没什么问题就实现了，但实现后发现个人博客网页刷新实在是慢。于是选择Gitee（码云）建仓库搭建博客，然而遇到了一些路径问题，问题一解决比较简单，此处略作记录；问题二鲜少有提及，此处仅针对我尝试并成功的修改做说明。</p>
+<a id="more"></a>
+
+<h3 id="P1：本地（localhost-4000）显示正确但上传到Gitee后主题样式不显示"><a href="#P1：本地（localhost-4000）显示正确但上传到Gitee后主题样式不显示" class="headerlink" title="P1：本地（localhost:4000）显示正确但上传到Gitee后主题样式不显示"></a>P1：本地（localhost:4000）显示正确但上传到Gitee后主题样式不显示</h3><p>此时显示如下图所示，因为这是后来测试时截的图，图片路径已设置好，故此时图片显示正确，但样式无法显示：<br><img src="1.png" alt="不显示主题样式" title="不显示主题样式"><br>在所建博客本地仓库目录下的_config.yml文件中如下位置做出如下修改：<br><img src="2.png" alt="root路径修改" title="root路径修改"><br>按照注释中修改如下：<br><img src="3.png" alt="url及root路径修改" title="url及root路径修改">  </p>
+<h5 id="Ps-在搜索与尝试过程中发现，仅修改root路径也可使样式正确显示，url可以不做修改。"><a href="#Ps-在搜索与尝试过程中发现，仅修改root路径也可使样式正确显示，url可以不做修改。" class="headerlink" title="Ps:在搜索与尝试过程中发现，仅修改root路径也可使样式正确显示，url可以不做修改。"></a>Ps:在搜索与尝试过程中发现，仅修改root路径也可使样式正确显示，url可以不做修改。</h5><h3 id="P2：主题样式成功显示，但上传到Gitee后主题图片不显示"><a href="#P2：主题样式成功显示，但上传到Gitee后主题图片不显示" class="headerlink" title="P2：主题样式成功显示，但上传到Gitee后主题图片不显示"></a>P2：主题样式成功显示，但上传到Gitee后主题图片不显示</h3><p>经过修改root路径后，样式可以成功显示，但又发现主题图片无法显示，此时主页刷新（多刷新几次）显示如下图所示：<br><img src="4.png" alt="不显示主题图片" title="不显示主题图片"><br>查看源代码，看到图片位置显示alt内容能够想到应该是图片路径问题，在主题路径下的_config.yml文件内修改图片路径，经过多次尝试更改路径，图标、Logo及Cover路径改为相对路径即images/favicon.ico、images/ayer-side.svg和images/cover4.jpg时能够成功显示主页图片及侧边栏Logo，但网页标题图片无法显示且当导航到其他页面时，侧边栏Logo仍无法正常显示：<br><img src="5.png" alt="不显示网页标题图标"><br><img src="6.png" alt="不显示侧边栏Logo"><br>修改主要注意以下两点：1、将图片相对路径改为绝对路径；2、此处绝对路径为Gitee上个人博客远程仓库上的绝对路径。<br><img src="7.png" alt="修改图片绝对路径"><br>修改后博客页面即可正常显示:<br><img src="8.png" alt="博客页面正常显示"><br>在GitHub上完全没有遇到以上路径问题，而且看其他大佬教程中也没有提到这个问题，应该跟我Gitee Pages生成的网站地址有关，比别人多了 <strong>/lynn_blog</strong>。<br><img src="10.png" alt="博客页面正常显示"></p>
+<h3 id="P3：fatal-not-a-git-repository-or-not-any-parent-up-to-mount-point-mnt"><a href="#P3：fatal-not-a-git-repository-or-not-any-parent-up-to-mount-point-mnt" class="headerlink" title="P3：fatal: not a git repository (or not any parent up to mount point /mnt)"></a>P3：fatal: not a git repository (or not any parent up to mount point /mnt)</h3><p>新搭建的博客在仓库主页没有README.md文件，想要新增一个README.md文件，结果在输入git add README.md命令时报错：fatal: not a git repository (or not any parent up to mount point /mnt)。<br>首先进入你新建博客目录下的.deploy_git目录中，添加README.md文件，输入命令$ echo “#Lynn_Blog” &gt;&gt; README.md（该命令可不在.deploy_git目录下进行）和$ git add README.md（该命令必须在.deploy_git目录下进行，否则报错）也不会报错，原因是为与远程仓库连接的是.deploy_git目录。<br><img src="9.png" alt="正确路径演示"></p>
+<h4 id="如大家仍有问题或遇到其他问题，欢迎一起交流学习！"><a href="#如大家仍有问题或遇到其他问题，欢迎一起交流学习！" class="headerlink" title="如大家仍有问题或遇到其他问题，欢迎一起交流学习！"></a>如大家仍有问题或遇到其他问题，欢迎一起交流学习！</h4>]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>Blogs</tag>
+        <tag>Gitee</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>GiteeBlog</title>
+    <url>/lynn_blog/2020/02/06/myGiteeBlog/</url>
+    <content><![CDATA[<h2 id="Welcome"><a href="#Welcome" class="headerlink" title="Welcome!"></a>Welcome!</h2><p><strong>This is my very first personal blog on Gitee.</strong><br><strong><a href="https://lynn-zuo.gitee.io/lynn_blog">https://lynn-zuo.gitee.io/lynn_blog</a></strong><br><strong>Thanks for the author Shen-Yu’s blog theme: hexo-theme-ayer. The website of sourcecode is <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank" rel="noopener">https://github.com/Shen-Yu/hexo-theme-ayer</a>.</strong></p>
+<a id="more"></a>
+]]></content>
+      <tags>
+        <tag>notes</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/lynn_blog/2020/02/06/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+]]></content>
+      <tags>
+        <tag>notes</tag>
+      </tags>
+  </entry>
 </search>
