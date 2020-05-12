@@ -3,11 +3,11 @@
   <title>Lynn</title>
   
   
-  <link href="/lynn_blog/atom.xml" rel="self"/>
+  <link href="/atom.xml" rel="self"/>
   
-  <link href="https://lynn-zuo.gitee.io/lynn_blog/"/>
+  <link href="http://yoursite.com/"/>
   <updated>2020-05-11T10:53:09.353Z</updated>
-  <id>https://lynn-zuo.gitee.io/lynn_blog/</id>
+  <id>http://yoursite.com/</id>
   
   <author>
     <name>Lynn Zuo</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>Alert提示框的vue局部组件编写</title>
-    <link href="https://lynn-zuo.gitee.io/lynn_blog/2020/05/11/Vue%E7%BB%84%E4%BB%B6%E7%BC%96%E5%86%99%E4%B9%8BAlert%E6%8F%90%E7%A4%BA%E6%A1%86%E7%BB%84%E4%BB%B6%E7%BC%96%E5%86%99/"/>
-    <id>https://lynn-zuo.gitee.io/lynn_blog/2020/05/11/Vue%E7%BB%84%E4%BB%B6%E7%BC%96%E5%86%99%E4%B9%8BAlert%E6%8F%90%E7%A4%BA%E6%A1%86%E7%BB%84%E4%BB%B6%E7%BC%96%E5%86%99/</id>
+    <link href="http://yoursite.com/2020/05/11/Vue%E7%BB%84%E4%BB%B6%E7%BC%96%E5%86%99%E4%B9%8BAlert%E6%8F%90%E7%A4%BA%E6%A1%86%E7%BB%84%E4%BB%B6%E7%BC%96%E5%86%99/"/>
+    <id>http://yoursite.com/2020/05/11/Vue%E7%BB%84%E4%BB%B6%E7%BC%96%E5%86%99%E4%B9%8BAlert%E6%8F%90%E7%A4%BA%E6%A1%86%E7%BB%84%E4%BB%B6%E7%BC%96%E5%86%99/</id>
     <published>2020-05-11T10:43:32.000Z</published>
     <updated>2020-05-11T10:53:09.353Z</updated>
     
@@ -32,17 +32,17 @@
     </summary>
     
     
-      <category term="学习" scheme="https://lynn-zuo.gitee.io/lynn_blog/categories/%E5%AD%A6%E4%B9%A0/"/>
+      <category term="学习" scheme="http://yoursite.com/categories/%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="Vue" scheme="https://lynn-zuo.gitee.io/lynn_blog/tags/Vue/"/>
+      <category term="Vue" scheme="http://yoursite.com/tags/Vue/"/>
     
   </entry>
   
   <entry>
     <title>情人节表白神器</title>
-    <link href="https://lynn-zuo.gitee.io/lynn_blog/2020/02/13/%E6%83%85%E4%BA%BA%E8%8A%82%E8%A1%A8%E7%99%BD%E7%A5%9E%E5%99%A8/"/>
-    <id>https://lynn-zuo.gitee.io/lynn_blog/2020/02/13/%E6%83%85%E4%BA%BA%E8%8A%82%E8%A1%A8%E7%99%BD%E7%A5%9E%E5%99%A8/</id>
+    <link href="http://yoursite.com/2020/02/13/%E6%83%85%E4%BA%BA%E8%8A%82%E8%A1%A8%E7%99%BD%E7%A5%9E%E5%99%A8/"/>
+    <id>http://yoursite.com/2020/02/13/%E6%83%85%E4%BA%BA%E8%8A%82%E8%A1%A8%E7%99%BD%E7%A5%9E%E5%99%A8/</id>
     <published>2020-02-13T14:09:32.000Z</published>
     <updated>2020-02-14T05:06:17.022Z</updated>
     
@@ -55,19 +55,19 @@
     </summary>
     
     
-      <category term="生活" scheme="https://lynn-zuo.gitee.io/lynn_blog/categories/%E7%94%9F%E6%B4%BB/"/>
+      <category term="生活" scheme="http://yoursite.com/categories/%E7%94%9F%E6%B4%BB/"/>
     
     
-      <category term="notes" scheme="https://lynn-zuo.gitee.io/lynn_blog/tags/notes/"/>
+      <category term="notes" scheme="http://yoursite.com/tags/notes/"/>
     
-      <category term="Python" scheme="https://lynn-zuo.gitee.io/lynn_blog/tags/Python/"/>
+      <category term="Python" scheme="http://yoursite.com/tags/Python/"/>
     
   </entry>
   
   <entry>
     <title>记录Gitee+Hexo搭建博客主题样式及图片不显示问题</title>
-    <link href="https://lynn-zuo.gitee.io/lynn_blog/2020/02/08/firstBlog-path/"/>
-    <id>https://lynn-zuo.gitee.io/lynn_blog/2020/02/08/firstBlog-path/</id>
+    <link href="http://yoursite.com/2020/02/08/firstBlog-path/"/>
+    <id>http://yoursite.com/2020/02/08/firstBlog-path/</id>
     <published>2020-02-08T14:12:45.000Z</published>
     <updated>2020-02-12T09:40:26.062Z</updated>
     
@@ -79,38 +79,19 @@
     </summary>
     
     
-      <category term="学习" scheme="https://lynn-zuo.gitee.io/lynn_blog/categories/%E5%AD%A6%E4%B9%A0/"/>
+      <category term="学习" scheme="http://yoursite.com/categories/%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="Blogs" scheme="https://lynn-zuo.gitee.io/lynn_blog/tags/Blogs/"/>
+      <category term="Blogs" scheme="http://yoursite.com/tags/Blogs/"/>
     
-      <category term="Gitee" scheme="https://lynn-zuo.gitee.io/lynn_blog/tags/Gitee/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>GiteeBlog</title>
-    <link href="https://lynn-zuo.gitee.io/lynn_blog/2020/02/06/myGiteeBlog/"/>
-    <id>https://lynn-zuo.gitee.io/lynn_blog/2020/02/06/myGiteeBlog/</id>
-    <published>2020-02-06T14:32:18.000Z</published>
-    <updated>2020-02-14T02:55:35.211Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;Welcome&quot;&gt;&lt;a href=&quot;#Welcome&quot; class=&quot;headerlink&quot; title=&quot;Welcome!&quot;&gt;&lt;/a&gt;Welcome!&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;This is my very first personal blog on Gitee.&lt;/strong&gt;&lt;br&gt;&lt;strong&gt;&lt;a href=&quot;https://lynn-zuo.gitee.io/lynn_blog&quot;&gt;https://lynn-zuo.gitee.io/lynn_blog&lt;/a&gt;&lt;/strong&gt;&lt;br&gt;&lt;strong&gt;Thanks for the author Shen-Yu’s blog theme: hexo-theme-ayer. The website of sourcecode is &lt;a href=&quot;https://github.com/Shen-Yu/hexo-theme-ayer&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://github.com/Shen-Yu/hexo-theme-ayer&lt;/a&gt;.&lt;/strong&gt;&lt;/p&gt;
-    
-    </summary>
-    
-    
-    
-      <category term="notes" scheme="https://lynn-zuo.gitee.io/lynn_blog/tags/notes/"/>
+      <category term="Gitee" scheme="http://yoursite.com/tags/Gitee/"/>
     
   </entry>
   
   <entry>
     <title>Hello World</title>
-    <link href="https://lynn-zuo.gitee.io/lynn_blog/2020/02/06/hello-world/"/>
-    <id>https://lynn-zuo.gitee.io/lynn_blog/2020/02/06/hello-world/</id>
+    <link href="http://yoursite.com/2020/02/06/hello-world/"/>
+    <id>http://yoursite.com/2020/02/06/hello-world/</id>
     <published>2020-02-06T14:30:00.000Z</published>
     <updated>2020-02-14T02:55:28.788Z</updated>
     
@@ -123,7 +104,26 @@
     
     
     
-      <category term="notes" scheme="https://lynn-zuo.gitee.io/lynn_blog/tags/notes/"/>
+      <category term="notes" scheme="http://yoursite.com/tags/notes/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>GitHubBlog</title>
+    <link href="http://yoursite.com/2020/02/05/githubBlog/"/>
+    <id>http://yoursite.com/2020/02/05/githubBlog/</id>
+    <published>2020-02-05T12:15:56.000Z</published>
+    <updated>2020-02-14T08:25:26.220Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Welcome&quot;&gt;&lt;a href=&quot;#Welcome&quot; class=&quot;headerlink&quot; title=&quot;Welcome!&quot;&gt;&lt;/a&gt;Welcome!&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;This is my very first personal blog on GitHub.&lt;/strong&gt;&lt;br&gt;&lt;strong&gt;&lt;a href=&quot;https://lynn-zuo.github.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://lynn-zuo.github.io/&lt;/a&gt;&lt;/strong&gt;&lt;br&gt;&lt;strong&gt;Thanks for the author Shen-Yu’s blog theme: hexo-theme-ayer. The website of sourcecode is &lt;a href=&quot;https://github.com/Shen-Yu/hexo-theme-ayer&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://github.com/Shen-Yu/hexo-theme-ayer&lt;/a&gt;.&lt;/strong&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="notes" scheme="http://yoursite.com/tags/notes/"/>
     
   </entry>
   

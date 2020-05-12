@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>Alert提示框的vue局部组件编写</title>
-    <url>/lynn_blog/2020/05/11/Vue%E7%BB%84%E4%BB%B6%E7%BC%96%E5%86%99%E4%B9%8BAlert%E6%8F%90%E7%A4%BA%E6%A1%86%E7%BB%84%E4%BB%B6%E7%BC%96%E5%86%99/</url>
+    <url>/2020/05/11/Vue%E7%BB%84%E4%BB%B6%E7%BC%96%E5%86%99%E4%B9%8BAlert%E6%8F%90%E7%A4%BA%E6%A1%86%E7%BB%84%E4%BB%B6%E7%BC%96%E5%86%99/</url>
     <content><![CDATA[<h2 id="Alert提示框的vue局部组件编写"><a href="#Alert提示框的vue局部组件编写" class="headerlink" title="Alert提示框的vue局部组件编写"></a>Alert提示框的vue局部组件编写</h2><p>最近一直学习vue，跟着视频敲代码，敲了两三个组件后，终于对编写组件有一个大致的思路了，以下通过编写一个alert提示框组件大致梳理一下我编写组件的思路。<br>主要分为三个部分：组件引入(注册路由器)、定义组件内容样式及实现组件间通信。</p>
 <p>(注册路由器使用路由组件也可放到最后一步，个人习惯先引入然后定义组件及样式便于观察组件显示效果)</p>
 <p>下面是引入本组件使用显示效果，通过登匹配验证为false触发alert提示框显示，点击确认关闭提示框：</p>
@@ -69,7 +69,7 @@ showAlert (alertText) {
   </entry>
   <entry>
     <title>情人节表白神器</title>
-    <url>/lynn_blog/2020/02/13/%E6%83%85%E4%BA%BA%E8%8A%82%E8%A1%A8%E7%99%BD%E7%A5%9E%E5%99%A8/</url>
+    <url>/2020/02/13/%E6%83%85%E4%BA%BA%E8%8A%82%E8%A1%A8%E7%99%BD%E7%A5%9E%E5%99%A8/</url>
     <content><![CDATA[<h2 id="单身时节又逢君"><a href="#单身时节又逢君" class="headerlink" title="单身时节又逢君"></a>单身时节又逢君</h2><p>“都2020年了，这么浪漫的年份，你还是一个人吗？”</p>
 <p>“难不成我还能是一条狗？”</p>
 <p>嘻嘻嘻，祝大家情人节快乐呀！虽然疫情使得大家在这个情人节被异地了，甚至于成为小哥哥小姐姐们脱单之路上的拦路虎，但是我们可以更多点联系与互动，来表达自己的喜爱与思念呀，比如~线上表白系列来咯！ <em>^O^</em> </p>
@@ -142,7 +142,7 @@ showAlert (alertText) {
   </entry>
   <entry>
     <title>记录Gitee+Hexo搭建博客主题样式及图片不显示问题</title>
-    <url>/lynn_blog/2020/02/08/firstBlog-path/</url>
+    <url>/2020/02/08/firstBlog-path/</url>
     <content><![CDATA[<h2 id="主题样式及图片不显示问题"><a href="#主题样式及图片不显示问题" class="headerlink" title="主题样式及图片不显示问题"></a>主题样式及图片不显示问题</h2><p>使用<strong>Git+Hexo+GitHub/Gitee搭建个人博客</strong>的详细准确教程网上有很多，本人也是按照网上大佬们的教程进行操作的，这里不再重复，本文主要记录一下在搭建个人博客时遇到的几点问题，供已经了解搭建流程并存在类似问题的同学阅读交流。</p>
 <p>首先是搭建基于Git+Hexo+GitHub的个人博客，基本没什么问题就实现了，但实现后发现个人博客网页刷新实在是慢。于是选择Gitee（码云）建仓库搭建博客，然而遇到了一些路径问题，问题一解决比较简单，此处略作记录；问题二鲜少有提及，此处仅针对我尝试并成功的修改做说明。</p>
 <a id="more"></a>
@@ -160,18 +160,8 @@ showAlert (alertText) {
       </tags>
   </entry>
   <entry>
-    <title>GiteeBlog</title>
-    <url>/lynn_blog/2020/02/06/myGiteeBlog/</url>
-    <content><![CDATA[<h2 id="Welcome"><a href="#Welcome" class="headerlink" title="Welcome!"></a>Welcome!</h2><p><strong>This is my very first personal blog on Gitee.</strong><br><strong><a href="https://lynn-zuo.gitee.io/lynn_blog">https://lynn-zuo.gitee.io/lynn_blog</a></strong><br><strong>Thanks for the author Shen-Yu’s blog theme: hexo-theme-ayer. The website of sourcecode is <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank" rel="noopener">https://github.com/Shen-Yu/hexo-theme-ayer</a>.</strong></p>
-<a id="more"></a>
-]]></content>
-      <tags>
-        <tag>notes</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Hello World</title>
-    <url>/lynn_blog/2020/02/06/hello-world/</url>
+    <url>/2020/02/06/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
 <a id="more"></a>
@@ -186,6 +176,16 @@ showAlert (alertText) {
 <h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+]]></content>
+      <tags>
+        <tag>notes</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>GitHubBlog</title>
+    <url>/2020/02/05/githubBlog/</url>
+    <content><![CDATA[<h2 id="Welcome"><a href="#Welcome" class="headerlink" title="Welcome!"></a>Welcome!</h2><p><strong>This is my very first personal blog on GitHub.</strong><br><strong><a href="https://lynn-zuo.github.io/" target="_blank" rel="noopener">https://lynn-zuo.github.io/</a></strong><br><strong>Thanks for the author Shen-Yu’s blog theme: hexo-theme-ayer. The website of sourcecode is <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank" rel="noopener">https://github.com/Shen-Yu/hexo-theme-ayer</a>.</strong></p>
+<a id="more"></a>
 ]]></content>
       <tags>
         <tag>notes</tag>
