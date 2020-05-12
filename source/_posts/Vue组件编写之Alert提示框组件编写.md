@@ -14,7 +14,7 @@ categories: 学习
 下面是引入本组件使用显示效果，通过登匹配验证为false触发alert提示框显示，点击确认关闭提示框：
 <!--more-->
 
-![alert提示框显示效果](alert_1.jpg "alert提示框显示效果")
+![alert提示框显示效果](alert.jpg "alert提示框显示效果")
 
 #### 组件引入
 一种是写入路由，要先在在router.js中配置路由：
