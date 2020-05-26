@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-05-18T11:03:39.262Z</updated>
+  <updated>2020-05-26T10:18:11.096Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,56 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>珠峰架构公开课笔记之webpack4（二）</title>
+    <link href="http://yoursite.com/2020/05/26/%E7%8F%A0%E5%B3%B0%E6%9E%B6%E6%9E%84%E5%85%AC%E5%BC%80%E8%AF%BE%E7%AC%94%E8%AE%B0%E4%B9%8Bwebpack4%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
+    <id>http://yoursite.com/2020/05/26/%E7%8F%A0%E5%B3%B0%E6%9E%B6%E6%9E%84%E5%85%AC%E5%BC%80%E8%AF%BE%E7%AC%94%E8%AE%B0%E4%B9%8Bwebpack4%EF%BC%88%E4%BA%8C%EF%BC%89/</id>
+    <published>2020-05-26T10:18:11.096Z</published>
+    <updated>2020-05-26T10:18:11.096Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;珠峰架构公开课笔记之webpack4（二）&quot;&gt;&lt;a href=&quot;#珠峰架构公开课笔记之webpack4（二）&quot; class=&quot;headerlink&quot; title=&quot;珠峰架构公开课笔记之webpack4（二）&quot;&gt;&lt;/a&gt;珠峰架构公开课笔记之webpack4（二）&lt;/
+      
+    
+    </summary>
+    
+    
+      <category term="学习" scheme="http://yoursite.com/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="webpack" scheme="http://yoursite.com/tags/webpack/"/>
+    
+      <category term="javascript" scheme="http://yoursite.com/tags/javascript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>珠峰架构公开课笔记之webpack4（一）</title>
+    <link href="http://yoursite.com/2020/05/26/%E7%8F%A0%E5%B3%B0%E6%9E%B6%E6%9E%84%E5%85%AC%E5%BC%80%E8%AF%BE%E7%AC%94%E8%AE%B0%E4%B9%8Bwebpack4%EF%BC%88%E4%B8%80%EF%BC%89/"/>
+    <id>http://yoursite.com/2020/05/26/%E7%8F%A0%E5%B3%B0%E6%9E%B6%E6%9E%84%E5%85%AC%E5%BC%80%E8%AF%BE%E7%AC%94%E8%AE%B0%E4%B9%8Bwebpack4%EF%BC%88%E4%B8%80%EF%BC%89/</id>
+    <published>2020-05-26T08:59:41.186Z</published>
+    <updated>2020-05-26T08:59:41.186Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;珠峰架构公开课笔记之webpack（一）&quot;&gt;&lt;a href=&quot;#珠峰架构公开课笔记之webpack（一）&quot; class=&quot;headerlink&quot; title=&quot;珠峰架构公开课笔记之webpack（一）&quot;&gt;&lt;/a&gt;珠峰架构公开课笔记之webpack（一）&lt;/h2&gt;&lt;p&gt;先开个坑，后面接着补。正好测试下这个Blog还正常吗，重新翻了一遍git命令和错误解决都没整明白勉强能用，中间不加root权限还死活用不了hexo命令，现在什么都没做过了几天，按照试了不知多少遍的解决方案随便捣鼓了两下，不仅码云上的博客貌似恢复正常了，github上搭建的博客也莫名其妙正常了。差点要放弃这个Blog了，wordpress也要抽时间搞起来了，话说博客园和CSDN使用不要太简单……&lt;/p&gt;
+&lt;h3 id=&quot;0x01-webpack安装&quot;&gt;&lt;a href=&quot;#0x01-webpack安装&quot; class=&quot;headerlink&quot; title=&quot;0x01 webpack安装&quot;&gt;&lt;/a&gt;0x01 webpack安装&lt;/h3&gt;&lt;p&gt;我太菜了，之前没有了解过yarn,先去安装了解了下yarn，小白可以参考我这篇博文&lt;a href=&quot;https://www.cnblogs.com/lynn-z/p/12893810.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;：Ubuntu20.04安装yarn报错gpg: can’t connect to the agent: IPC connect call failed（已解决）&lt;/a&gt;，主要记录了我遇到的报错，当然还有yarn安装步骤和常见命令。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="学习" scheme="http://yoursite.com/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="webpack" scheme="http://yoursite.com/tags/webpack/"/>
+    
+      <category term="javascript" scheme="http://yoursite.com/tags/javascript/"/>
+    
+  </entry>
   
   <entry>
     <title>Alert提示框的vue局部组件编写</title>
