@@ -50,7 +50,7 @@
     
     <div class="article-meta">
       <a href="/2020/05/26/%E7%8F%A0%E5%B3%B0%E6%9E%B6%E6%9E%84%E5%85%AC%E5%BC%80%E8%AF%BE%E7%AC%94%E8%AE%B0%E4%B9%8Bwebpack4%EF%BC%88%E4%BA%8C%EF%BC%89/" class="article-date">
-  <time datetime="2020-05-26T10:18:11.096Z" itemprop="datePublished">2020-05-26</time>
+  <time datetime="2020-05-26T11:59:35.067Z" itemprop="datePublished">2020-05-26</time>
 </a>
       
   <div class="article-category">
@@ -64,7 +64,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">1.5k字</span>
+            <span class="post-count">1.6k字</span>
         </span>
     </span>
 
@@ -100,8 +100,12 @@
       
 
       
-      <h2 id="珠峰架构公开课笔记之webpack4（二）"><a href="#珠峰架构公开课笔记之webpack4（二）" class="headerlink" title="珠峰架构公开课笔记之webpack4（二）"></a>珠峰架构公开课笔记之webpack4（二）</h2><h3 id="0x01-JS模块转化ES6语法"><a href="#0x01-JS模块转化ES6语法" class="headerlink" title="0x01 JS模块转化ES6语法"></a>0x01 JS模块转化ES6语法</h3><p>es6/其他更高级语法——&gt;es5语法<br>安装插件：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yarn add @babel&#x2F;plugin-proposal-class-properties -D</span><br><span class="line"> yarn add @babel&#x2F;plugin-proposal-decorators -D</span><br></pre></td></tr></table></figure>
+      <h2 id="珠峰架构公开课笔记之webpack4（二）"><a href="#珠峰架构公开课笔记之webpack4（二）" class="headerlink" title="珠峰架构公开课笔记之webpack4（二）"></a>珠峰架构公开课笔记之webpack4（二）</h2><p>这部分主要是JS模块高级语法向ES5转化、JS语法处理校验、图片资源打包及文件分类。</p>
+<p>个人经验之谈：学习webpack之前还是要先学好JS和ES6语法（尤其是箭头函数），然后有一定VUE基础，学起来webpack工作机制理解更快，更能融会贯通，所以打好基础很重要。代码一定要去实践！由简入繁，从易到难。</p>
+<h3 id="0x01-JS模块转化ES6语法"><a href="#0x01-JS模块转化ES6语法" class="headerlink" title="0x01 JS模块转化ES6语法"></a>0x01 JS模块转化ES6语法</h3><p>es6/其他更高级语法——&gt;es5语法</p>
+<a id="more"></a>
+<p>安装插件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yarn add @babel&#x2F;plugin-proposal-class-properties -D</span><br><span class="line">yarn add @babel&#x2F;plugin-proposal-decorators -D</span><br></pre></td></tr></table></figure>
 <p><strong>webpack.config.js</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">rules:[</span><br><span class="line">&#123;</span><br><span class="line">  test: &#x2F;\.js$&#x2F;,</span><br><span class="line">  use: &#123;</span><br><span class="line">    loader: &#39;babel-loader&#39;,</span><br><span class="line">    options: &#123;</span><br><span class="line">    presets:[ &#x2F;&#x2F; 用babel-loader 把es6--&gt;es5</span><br><span class="line">      &#39;@babel&#x2F;preset-env&#39;</span><br><span class="line">    ],</span><br><span class="line">    plugins:[</span><br><span class="line">      [&quot;@babel&#x2F;plugin-proposal-decorators&quot;, &#123;&quot;legacy&quot;: true&#125;],</span><br><span class="line">      [&quot;@babel&#x2F;plugin-proposal-class-properties&quot;, &#123;&quot;loose&quot;: true&#125;]</span><br><span class="line">    ]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
 <p><strong>index.js</strong></p>

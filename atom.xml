@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-05-26T10:18:11.096Z</updated>
+  <updated>2020-05-26T11:59:35.067Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,15 +20,14 @@
     <title>珠峰架构公开课笔记之webpack4（二）</title>
     <link href="http://yoursite.com/2020/05/26/%E7%8F%A0%E5%B3%B0%E6%9E%B6%E6%9E%84%E5%85%AC%E5%BC%80%E8%AF%BE%E7%AC%94%E8%AE%B0%E4%B9%8Bwebpack4%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
     <id>http://yoursite.com/2020/05/26/%E7%8F%A0%E5%B3%B0%E6%9E%B6%E6%9E%84%E5%85%AC%E5%BC%80%E8%AF%BE%E7%AC%94%E8%AE%B0%E4%B9%8Bwebpack4%EF%BC%88%E4%BA%8C%EF%BC%89/</id>
-    <published>2020-05-26T10:18:11.096Z</published>
-    <updated>2020-05-26T10:18:11.096Z</updated>
+    <published>2020-05-26T11:59:35.067Z</published>
+    <updated>2020-05-26T11:59:35.067Z</updated>
     
     <summary type="html">
     
-      
-      
-        &lt;h2 id=&quot;珠峰架构公开课笔记之webpack4（二）&quot;&gt;&lt;a href=&quot;#珠峰架构公开课笔记之webpack4（二）&quot; class=&quot;headerlink&quot; title=&quot;珠峰架构公开课笔记之webpack4（二）&quot;&gt;&lt;/a&gt;珠峰架构公开课笔记之webpack4（二）&lt;/
-      
+      &lt;h2 id=&quot;珠峰架构公开课笔记之webpack4（二）&quot;&gt;&lt;a href=&quot;#珠峰架构公开课笔记之webpack4（二）&quot; class=&quot;headerlink&quot; title=&quot;珠峰架构公开课笔记之webpack4（二）&quot;&gt;&lt;/a&gt;珠峰架构公开课笔记之webpack4（二）&lt;/h2&gt;&lt;p&gt;这部分主要是JS模块高级语法向ES5转化、JS语法处理校验、图片资源打包及文件分类。&lt;/p&gt;
+&lt;p&gt;个人经验之谈：学习webpack之前还是要先学好JS和ES6语法（尤其是箭头函数），然后有一定VUE基础，学起来webpack工作机制理解更快，更能融会贯通，所以打好基础很重要。代码一定要去实践！由简入繁，从易到难。&lt;/p&gt;
+&lt;h3 id=&quot;0x01-JS模块转化ES6语法&quot;&gt;&lt;a href=&quot;#0x01-JS模块转化ES6语法&quot; class=&quot;headerlink&quot; title=&quot;0x01 JS模块转化ES6语法&quot;&gt;&lt;/a&gt;0x01 JS模块转化ES6语法&lt;/h3&gt;&lt;p&gt;es6/其他更高级语法——&amp;gt;es5语法&lt;/p&gt;
     
     </summary>
     
