@@ -1,5 +1,8 @@
 <!DOCTYPE html>
+
+
 <html lang="en">
+
 
 <head>
   <meta charset="utf-8" />
@@ -8,17 +11,24 @@
   <title>
     Hello World |  Lynn
   </title>
-  <meta name="generator" content="hexo-theme-yilia-plus">
+  <meta name="generator" content="hexo-theme-ayer">
   
-  <link rel="shortcut icon" href="/images/favicon.ico" />
+  <link rel="shortcut icon" href="/favicon.ico" />
   
   
-<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/dist/main.css">
 
   
-<script src="/js/pace.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
 
+  
+<link rel="stylesheet" href="/css/custom.css">
 
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+  
   
 
   
@@ -30,7 +40,7 @@
 
 <body>
   <div id="app">
-    <main class="content">
+    <main class="content on">
       <section class="outer">
   <article id="post-hello-world" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
@@ -42,7 +52,7 @@
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
   Hello World
 </h1>
-  
+ 
 
     </header>
     
@@ -59,8 +69,8 @@
     <span class="post-time">
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
-            <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">73字</span>
+            <span class="post-meta-item-text"> Word count:</span>
+            <span class="post-count">73</span>
         </span>
     </span>
 
@@ -68,8 +78,8 @@
         &nbsp; | &nbsp;
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
-            <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">1分钟</span>
+            <span class="post-meta-item-text"> Reading time≈</span>
+            <span class="post-count">1 min</span>
         </span>
     </span>
 </div>
@@ -91,8 +101,6 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-
-
       
 
       
@@ -112,10 +120,10 @@
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 
       
-      <!-- Reward -->
+      <!-- reward -->
       
       <div id="reward-btn">
-        打赏
+        Donate
       </div>
       
     </div>
@@ -127,16 +135,15 @@
           <ul class="post-copyright">
             <li>
               <i class="ri-copyright-line"></i>
-              <strong>版权声明： </strong s>
-              本博客所有文章除特别声明外，均采用 <a href="https://www.apache.org/licenses/LICENSE-2.0.html" rel="external nofollow"
-                target="_blank">Apache License 2.0</a> 许可协议。转载请注明出处！
+              <strong>Copyright： </strong>
+              Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source.
             </li>
           </ul>
         </div>
         
     <footer class="article-footer">
       
-        
+          
 <div class="share-btn">
       <span class="share-sns share-outer">
         <i class="ri-share-forward-line"></i>
@@ -188,7 +195,7 @@
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/notes/" rel="tag">notes</a></li></ul>
 
-      
+
     </footer>
 
   </div>
@@ -218,91 +225,75 @@
   
 
   
+
   
-<!-- valine评论 -->
-<div id="vcomments-box">
-    <div id="vcomments">
-    </div>
-</div>
-<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
-<script>
-    new Valine({
-        el: '#vcomments',
-        app_key: '',
-        path: window.location.pathname,
-        avatar: 'mp',
-        notify: 'false',
-        verify: 'false',
-        placeholder: '给我的文章加点评论吧~',
-        recordIP: true
-    });
-    const infoEle = document.querySelector('#vcomments .info');
-    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
-        infoEle.childNodes.forEach(function (item) {
-            item.parentNode.removeChild(item);
-        });
-    }
+  
+<div class="gitalk" id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.css">
+
+
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script>
+
+<script type="text/javascript">
+  var gitalk = new Gitalk({
+    clientID: '7e2d9e198c351c51f047',
+    clientSecret: '5f8ceac0ceeaca98bd54efcc9cb32de34148cc71',
+    repo: 'Lynn-zuo.github.io',
+    owner: 'Lynn-zuo',
+    admin: ['Lynn-zuo'],
+    // id: location.pathname,      // Ensure uniqueness and length less than 50
+    id: md5(location.pathname),
+    distractionFreeMode: false,  // Facebook-like distraction free mode
+    pagerDirection: 'last'
+  })
+
+  gitalk.render('gitalk-container')
 </script>
-<style>
-    #vcomments-box {
-        padding: 5px 30px;
-    }
 
-    @media screen and (max-width: 800px) {
-        #vcomments-box {
-            padding: 5px 0px;
-        }
-    }
-
-    #vcomments-box #vcomments {
-        background-color: #fff;
-    }
-
-    .v .vlist .vcard .vh {
-        padding-right: 20px;
-    }
-
-    .v .vlist .vcard {
-        padding-left: 10px;
-    }
-</style>
-
-  
-
-  
-  
   
 
 </article>
 </section>
       <footer class="footer">
   <div class="outer">
-    <ul class="list-inline">
+    <ul>
       <li>
-        &copy;
+        Copyrights &copy;
         2020
-        Lynn Zuo
+        <i class="ri-heart-fill heart_icon"></i> Lynn Zuo
       </li>
+    </ul>
+    <ul>
       <li>
         
-          Powered by
         
         
-        <a href="https://hexo.io" target="_blank">Hexo</a> Theme <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        Powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+        <span class="division">|</span>
+        Theme - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
         
       </li>
     </ul>
-    <ul class="list-inline">
+    <ul>
       <li>
         
         
         <span>
-  <i>PV:<span id="busuanzi_value_page_pv"></span></i>
-  <i>UV:<span id="busuanzi_value_site_uv"></span></i>
+  <span><i class="ri-user-3-fill"></i>Visitors:<span id="busuanzi_value_site_uv"></span></s>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>Views:<span id="busuanzi_value_page_pv"></span></span>
 </span>
         
       </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
       <li>
         <!-- cnzz统计 -->
         
@@ -312,14 +303,19 @@
     </ul>
   </div>
 </footer>
-    <div class="to_top">
+      <div class="float_btns">
         <div class="totop" id="totop">
   <i class="ri-arrow-up-line"></i>
 </div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
       </div>
     </main>
-      <aside class="sidebar">
-        <button class="navbar-toggle"></button>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
 <nav class="navbar">
   
   <div class="logo">
@@ -349,7 +345,7 @@
     </li>
     
     <li class="nav-item">
-      <a class="nav-item-link" href="/notes">随笔</a>
+      <a class="nav-item-link" href="https://www.cnblogs.com/lynn-z/" target="_blank" rel="noopener">随笔</a>
     </li>
     
     <li class="nav-item">
@@ -380,8 +376,14 @@
   <div id="local-search-result" class="local-search-result"></div>
 </div>
 </div>
-      </aside>
-      <div id="mask"></div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
 
 <!-- #reward -->
 <div id="reward">
@@ -402,83 +404,55 @@
     
   </div>
 </div>
-      
+    
 <script src="/js/jquery-2.0.3.min.js"></script>
-
-
-<script src="/js/jquery.justifiedGallery.min.js"></script>
 
 
 <script src="/js/lazyload.min.js"></script>
 
-
-<script src="/js/busuanzi-2.3.pure.min.js"></script>
-
-
-<script src="/js/share.js"></script>
-
-
-
-<script src="/fancybox/jquery.fancybox.min.js"></script>
-
-
-
+<!-- Subtitle -->
 
 <script>
   try {
     var typed = new Typed("#subtitle", {
-    strings: ['面朝大海，春暖花开','愿你一生努力，一生被爱','想要的都拥有，得不到的都释怀'],
-    startDelay: theme.subtitle.startDelay,
-    typeSpeed: theme.subtitle.typeSpeed,
-    loop: theme.subtitle.loop,
-    backSpeed: theme.subtitle.backSpeed,
-    showCursor: theme.subtitle.showCursor
+      strings: ['面朝大海，春暖花开', '愿你一生努力，一生被爱', '想要的都拥有，得不到的都释怀'],
+      startDelay: 0,
+      typeSpeed: 200,
+      loop: true,
+      backSpeed: 100,
+      showCursor: true
     });
   } catch (err) {
+    console.log(err)
   }
-  
 </script>
 
-
+<!-- Tocbot -->
 
 
 <script src="/js/tocbot.min.js"></script>
 
 <script>
-  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
   tocbot.init({
     tocSelector: '.tocbot',
     contentSelector: '.article-entry',
     headingSelector: 'h1, h2, h3, h4, h5, h6',
     hasInnerContainers: true,
     scrollSmooth: true,
-    scrollContainer:'main',
+    scrollContainer: 'main',
     positionFixedSelector: '.tocbot',
     positionFixedClass: 'is-position-fixed',
-    fixedSidebarOffset: 'auto',
-    onClick: (e) => {
-      $('.toc-link').removeClass('is-active-link');
-      $(`a[href=${e.target.hash}]`).addClass('is-active-link');
-      $(e.target.hash).scrollIntoView();
-      return false;
-    }
+    fixedSidebarOffset: 'auto'
   });
 </script>
 
-
-<script>
-  var ayerConfig = {
-    mathjax: theme.mathjax
-  }
-</script>
-
-
-<script src="/js/ayer.js"></script>
-
-
 <script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
 
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
 
 <!-- Root element of PhotoSwipe. Must have class pswp. -->
 <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
@@ -548,7 +522,7 @@
 </div>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
 <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
 
@@ -587,10 +561,98 @@
     viewer_init()
 </script>
 
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+<!-- ClickLove -->
+
+
+<script src="/js/clickLove.js"></script>
+
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+<!-- CanvasBackground -->
+
+
+<script src="/js/dz.js"></script>
 
 
 
-<script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
+    
+    
+    
+      
   </div>
 </body>
 
