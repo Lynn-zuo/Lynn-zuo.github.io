@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-05-26T11:59:35.067Z</updated>
+  <updated>2020-08-15T06:59:28.065Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,17 +17,17 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>珠峰架构公开课笔记之webpack4（二）</title>
-    <link href="http://yoursite.com/2020/05/26/%E7%8F%A0%E5%B3%B0%E6%9E%B6%E6%9E%84%E5%85%AC%E5%BC%80%E8%AF%BE%E7%AC%94%E8%AE%B0%E4%B9%8Bwebpack4%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
-    <id>http://yoursite.com/2020/05/26/%E7%8F%A0%E5%B3%B0%E6%9E%B6%E6%9E%84%E5%85%AC%E5%BC%80%E8%AF%BE%E7%AC%94%E8%AE%B0%E4%B9%8Bwebpack4%EF%BC%88%E4%BA%8C%EF%BC%89/</id>
-    <published>2020-05-26T11:59:35.067Z</published>
-    <updated>2020-05-26T11:59:35.067Z</updated>
+    <title>珠峰架构公开课笔记之webpack4（二）配置篇</title>
+    <link href="http://yoursite.com/2020/08/15/%E7%8F%A0%E5%B3%B0%E6%9E%B6%E6%9E%84%E5%85%AC%E5%BC%80%E8%AF%BE%E7%AC%94%E8%AE%B0%E4%B9%8Bwebpack4%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
+    <id>http://yoursite.com/2020/08/15/%E7%8F%A0%E5%B3%B0%E6%9E%B6%E6%9E%84%E5%85%AC%E5%BC%80%E8%AF%BE%E7%AC%94%E8%AE%B0%E4%B9%8Bwebpack4%EF%BC%88%E4%BA%8C%EF%BC%89/</id>
+    <published>2020-08-15T06:59:28.065Z</published>
+    <updated>2020-08-15T06:59:28.065Z</updated>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;珠峰架构公开课笔记之webpack4（二）&quot;&gt;&lt;a href=&quot;#珠峰架构公开课笔记之webpack4（二）&quot; class=&quot;headerlink&quot; title=&quot;珠峰架构公开课笔记之webpack4（二）&quot;&gt;&lt;/a&gt;珠峰架构公开课笔记之webpack4（二）&lt;/h2&gt;&lt;p&gt;这部分主要是JS模块高级语法向ES5转化、JS语法处理校验、图片资源打包及文件分类。&lt;/p&gt;
-&lt;p&gt;个人经验之谈：学习webpack之前还是要先学好JS和ES6语法（尤其是箭头函数），然后有一定VUE基础，学起来webpack工作机制理解更快，更能融会贯通，所以打好基础很重要。代码一定要去实践！由简入繁，从易到难。&lt;/p&gt;
-&lt;h3 id=&quot;0x01-JS模块转化ES6语法&quot;&gt;&lt;a href=&quot;#0x01-JS模块转化ES6语法&quot; class=&quot;headerlink&quot; title=&quot;0x01 JS模块转化ES6语法&quot;&gt;&lt;/a&gt;0x01 JS模块转化ES6语法&lt;/h3&gt;&lt;p&gt;es6/其他更高级语法——&amp;gt;es5语法&lt;/p&gt;
+      &lt;h2 id=&quot;珠峰架构公开课笔记之webpack4（二）配置篇&quot;&gt;&lt;a href=&quot;#珠峰架构公开课笔记之webpack4（二）配置篇&quot; class=&quot;headerlink&quot; title=&quot;珠峰架构公开课笔记之webpack4（二）配置篇&quot;&gt;&lt;/a&gt;珠峰架构公开课笔记之webpack4（二）配置篇&lt;/h2&gt;&lt;p&gt;个人经验之谈：学习webpack之前还是要先学好JS和ES6语法（尤其是箭头函数），然后有一定VUE基础，学起来webpack工作机制理解更快，反过来也能理解vue中一些配置原理，打好基础很重要。代码一定要去实践！由简入繁，从易到难。&lt;/p&gt;
+&lt;h3 id=&quot;0x01-打包多页应用&quot;&gt;&lt;a href=&quot;#0x01-打包多页应用&quot; class=&quot;headerlink&quot; title=&quot;0x01 打包多页应用&quot;&gt;&lt;/a&gt;0x01 打包多页应用&lt;/h3&gt;&lt;p&gt;首先打包的入口和出口处配置多个：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;webpack.config.js&lt;/strong&gt;&lt;/p&gt;
     
     </summary>
     
@@ -42,15 +42,15 @@
   </entry>
   
   <entry>
-    <title>珠峰架构公开课笔记之webpack4（一）</title>
-    <link href="http://yoursite.com/2020/05/26/%E7%8F%A0%E5%B3%B0%E6%9E%B6%E6%9E%84%E5%85%AC%E5%BC%80%E8%AF%BE%E7%AC%94%E8%AE%B0%E4%B9%8Bwebpack4%EF%BC%88%E4%B8%80%EF%BC%89/"/>
-    <id>http://yoursite.com/2020/05/26/%E7%8F%A0%E5%B3%B0%E6%9E%B6%E6%9E%84%E5%85%AC%E5%BC%80%E8%AF%BE%E7%AC%94%E8%AE%B0%E4%B9%8Bwebpack4%EF%BC%88%E4%B8%80%EF%BC%89/</id>
-    <published>2020-05-26T08:59:41.186Z</published>
-    <updated>2020-05-26T08:59:41.186Z</updated>
+    <title>珠峰架构公开课笔记之webpack4（一）基础篇</title>
+    <link href="http://yoursite.com/2020/08/15/%E7%8F%A0%E5%B3%B0%E6%9E%B6%E6%9E%84%E5%85%AC%E5%BC%80%E8%AF%BE%E7%AC%94%E8%AE%B0%E4%B9%8Bwebpack4%EF%BC%88%E4%B8%80%EF%BC%89/"/>
+    <id>http://yoursite.com/2020/08/15/%E7%8F%A0%E5%B3%B0%E6%9E%B6%E6%9E%84%E5%85%AC%E5%BC%80%E8%AF%BE%E7%AC%94%E8%AE%B0%E4%B9%8Bwebpack4%EF%BC%88%E4%B8%80%EF%BC%89/</id>
+    <published>2020-08-15T06:25:40.472Z</published>
+    <updated>2020-08-15T06:25:40.472Z</updated>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;珠峰架构公开课笔记之webpack（一）&quot;&gt;&lt;a href=&quot;#珠峰架构公开课笔记之webpack（一）&quot; class=&quot;headerlink&quot; title=&quot;珠峰架构公开课笔记之webpack（一）&quot;&gt;&lt;/a&gt;珠峰架构公开课笔记之webpack（一）&lt;/h2&gt;&lt;p&gt;先开个坑，后面接着补。正好测试下这个Blog还正常吗，重新翻了一遍git命令和错误解决都没整明白勉强能用，中间不加root权限还死活用不了hexo命令，现在什么都没做过了几天，按照试了不知多少遍的解决方案随便捣鼓了两下，不仅码云上的博客貌似恢复正常了，github上搭建的博客也莫名其妙正常了。差点要放弃这个Blog了，wordpress也要抽时间搞起来了，话说博客园和CSDN使用不要太简单……&lt;/p&gt;
+      &lt;h2 id=&quot;珠峰架构公开课笔记之webpack（一）基础篇&quot;&gt;&lt;a href=&quot;#珠峰架构公开课笔记之webpack（一）基础篇&quot; class=&quot;headerlink&quot; title=&quot;珠峰架构公开课笔记之webpack（一）基础篇&quot;&gt;&lt;/a&gt;珠峰架构公开课笔记之webpack（一）基础篇&lt;/h2&gt;&lt;p&gt;先开个坑，后面接着补。正好测试下这个Blog还正常吗，重新翻了一遍git命令和错误解决都没整明白勉强能用，中间不加root权限还死活用不了hexo命令，现在什么都没做过了几天，按照试了不知多少遍的解决方案随便捣鼓了两下，不仅码云上的博客貌似恢复正常了，github上搭建的博客也莫名其妙正常了。差点要放弃这个Blog了，wordpress也要抽时间搞起来了，话说博客园和CSDN使用不要太简单……&lt;/p&gt;
 &lt;h3 id=&quot;0x01-webpack安装&quot;&gt;&lt;a href=&quot;#0x01-webpack安装&quot; class=&quot;headerlink&quot; title=&quot;0x01 webpack安装&quot;&gt;&lt;/a&gt;0x01 webpack安装&lt;/h3&gt;&lt;p&gt;我太菜了，之前没有了解过yarn,先去安装了解了下yarn，小白可以参考我这篇博文&lt;a href=&quot;https://www.cnblogs.com/lynn-z/p/12893810.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;：Ubuntu20.04安装yarn报错gpg: can’t connect to the agent: IPC connect call failed（已解决）&lt;/a&gt;，主要记录了我遇到的报错，当然还有yarn安装步骤和常见命令。&lt;/p&gt;
     
     </summary>

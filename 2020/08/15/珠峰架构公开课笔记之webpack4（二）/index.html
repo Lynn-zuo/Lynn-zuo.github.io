@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    珠峰架构公开课笔记之webpack4（二）配置篇 |  Lynn
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+  
+  
+
+  
+
+<link rel="alternate" href="/atom.xml" title="Lynn" type="application/atom+xml">
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    <main class="content on">
+      <section class="outer">
+  <article id="post-珠峰架构公开课笔记之webpack4（二）" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  珠峰架构公开课笔记之webpack4（二）配置篇
+</h1>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/08/15/%E7%8F%A0%E5%B3%B0%E6%9E%B6%E6%9E%84%E5%85%AC%E5%BC%80%E8%AF%BE%E7%AC%94%E8%AE%B0%E4%B9%8Bwebpack4%EF%BC%88%E4%BA%8C%EF%BC%89/" class="article-date">
+  <time datetime="2020-08-15T06:59:28.065Z" itemprop="datePublished">2020-08-15</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%AD%A6%E4%B9%A0/">学习</a>
+  </div>
+
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> Word count:</span>
+            <span class="post-count">1.3k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> Reading time≈</span>
+            <span class="post-count">6 min</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h2 id="珠峰架构公开课笔记之webpack4（二）配置篇"><a href="#珠峰架构公开课笔记之webpack4（二）配置篇" class="headerlink" title="珠峰架构公开课笔记之webpack4（二）配置篇"></a>珠峰架构公开课笔记之webpack4（二）配置篇</h2><p>个人经验之谈：学习webpack之前还是要先学好JS和ES6语法（尤其是箭头函数），然后有一定VUE基础，学起来webpack工作机制理解更快，反过来也能理解vue中一些配置原理，打好基础很重要。代码一定要去实践！由简入繁，从易到难。</p>
+<h3 id="0x01-打包多页应用"><a href="#0x01-打包多页应用" class="headerlink" title="0x01 打包多页应用"></a>0x01 打包多页应用</h3><p>首先打包的入口和出口处配置多个：</p>
+<p><strong>webpack.config.js</strong></p>
+<a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">entry: &#123; &#x2F;&#x2F; 入口，相对路径</span><br><span class="line">  home: &#39;.&#x2F;src&#x2F;index.js&#39;,</span><br><span class="line">  other: &#39;.&#x2F;src&#x2F;other.js&#39;</span><br><span class="line">&#125;,</span><br><span class="line">output:&#123; &#x2F;&#x2F; 出口</span><br><span class="line">  &#x2F;&#x2F; [name]: home other</span><br><span class="line">  filename: &#39;[name].js&#39;, &#x2F;&#x2F; 打包后的文件名</span><br><span class="line">  path: path.resolve(__dirname, &#39;dist&#39;)</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<p>然后打包时模板生成html插件中：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">new HtmlWebpackPlugin(&#123;</span><br><span class="line">  template:&#39;.&#x2F;src&#x2F;index.html&#39;,</span><br><span class="line">  filename:&#39;home.html&#39;,</span><br><span class="line">  chunks:[&#39;home&#39;], &#x2F;&#x2F; 代码块,仅引入home</span><br><span class="line">&#125;),</span><br><span class="line">new HtmlWebpackPlugin(&#123;</span><br><span class="line">  template:&#39;.&#x2F;src&#x2F;index.html&#39;,</span><br><span class="line">  filename:&#39;other.html&#39;,</span><br><span class="line">  chunks:[&#39;home&#39;,&#39;other&#39;], &#x2F;&#x2F; 代码块,可同时引入home和other的写法</span><br><span class="line">  </span><br><span class="line">&#125;),</span><br></pre></td></tr></table></figure>
+
+<h3 id="0x02-配置sourcemap"><a href="#0x02-配置sourcemap" class="headerlink" title="0x02 配置sourcemap"></a>0x02 配置sourcemap</h3><p>关于配置source-map:<br>源码映射,生成sourcemap文件，出错了会标识当前出错的列和行。</p>
+<p><strong>webpack.config.js</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 1）源码映射，生成sourcemap文件，出错了会标识当前出错的列和行，大而全，独立</span><br><span class="line">&#x2F;&#x2F; devtool: &#39;source-map&#39;, &#x2F;&#x2F; 增加映射文件，可以帮我们调试源代码</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 2）不会产生单独的文件，但是可以显示行和列</span><br><span class="line">&#x2F;&#x2F; devtool: &#39;eval-source-map&#39;,</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 3）不会产生列 但是是一个单独的映射文件</span><br><span class="line">&#x2F;&#x2F; devtool: &#39;cheap-module-source-map&#39;, &#x2F;&#x2F; 产生后可以保留进行调试</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 4）不会产生文件 集成在打包后的文件中 不会产生列</span><br><span class="line">devtool: &#39;cheap-module-eval-source-map&#39;,</span><br></pre></td></tr></table></figure>
+
+<p>先在<code>index.js</code>把代码写错，等待<code>sourcemap</code>报错</p>
+<p>在浏览器报错得到映射进行查看。</p>
+<h3 id="0x03-Watch的用法"><a href="#0x03-Watch的用法" class="headerlink" title="0x03 Watch的用法"></a>0x03 Watch的用法</h3><p>npm run build下监控当前代码变化，实时打包</p>
+<p><strong>webpack.config.js</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">watch: true,</span><br><span class="line">watchOptions:&#123; &#x2F;&#x2F; 监控的选项</span><br><span class="line">  poll:1000, &#x2F;&#x2F; 每秒问我1000次</span><br><span class="line">  aggreatementTimeout:500 &#x2F;&#x2F; 防抖</span><br><span class="line">  ignored:&#x2F;node_modules&#x2F; &#x2F;&#x2F; 不需要监控的文件</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="0x04-webpack小插件应用"><a href="#0x04-webpack小插件应用" class="headerlink" title="0x04 webpack小插件应用"></a>0x04 webpack小插件应用</h3><p>1) cleanWebpackPlugin</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add cleanWebpackPlugin -D</span><br></pre></td></tr></table></figure>
+<p><strong>webpack.config.js</strong><br>let cleanWebpackPlugin = require(‘’)<br>plugins: [<br>  new cleanWebpackPlugin({‘./dist’}) // 把dist先删掉再打包<br>]<br>2) copyWebpackPlugin</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add cleanWebpackPlugin -D</span><br></pre></td></tr></table></figure>
+<p><strong>webpack.config.js</strong><br>let copyWebpackPlugin = require(‘’)<br>plugins: [<br>  new cleanWebpackPlugin([ // 拷贝<br>    {from:’./doc’, to:’./(dist)’}<br>  ]) // 打包到dist<br>]<br>3) bannerPlugin–内置<br><strong>webpack.config.js</strong><br>let webpack = require(‘’)<br>plugins: [<br>  new bannerPlugin(‘made 2020 by xx’) // 打包到文件开头声明<br>]</p>
+<h3 id="0x05-webpack跨域问题"><a href="#0x05-webpack跨域问题" class="headerlink" title="0x05 webpack跨域问题"></a>0x05 webpack跨域问题</h3><p>express是node框架，起一个服务器</p>
+<p><strong>server.js</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">let express &#x3D; require(&#39;express&#39;)</span><br><span class="line"></span><br><span class="line">let app &#x3D; express();</span><br><span class="line">app.get(&#39;&#x2F;api&#x2F;user&#39;, (req,res)&#x3D;&gt;&#123;</span><br><span class="line">  res.json(&#123;name:&#39;左左&#39;&#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.listen(3000);</span><br></pre></td></tr></table></figure>
+
+<p>客户端发ajax请求</p>
+<p><strong>index.js</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">let xhr &#x3D; new XMLHttpRequest();</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; http:localhost:8080 webpack-dev-sever的服务---3000</span><br><span class="line">&#x2F;&#x2F; http proxy</span><br><span class="line">xhr.open(&#39;GET&#39;, &#39;&#x2F;api&#x2F;user&#39;, true);</span><br><span class="line"></span><br><span class="line">xhr.onload &#x3D; function()&#123;</span><br><span class="line">  console.log(xhr.response)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">xhr.send();</span><br></pre></td></tr></table></figure>
+
+<p>客户端配置跨域</p>
+<p><strong>webpack.config.js</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">devServer:&#123;</span><br><span class="line">  &#x2F;&#x2F; 1) 请求服务器</span><br><span class="line">  proxy:&#123;</span><br><span class="line">    &#39;&#x2F;api&#39;:&#123; &#x2F;&#x2F; 重写的方式把请求代理到express服务器上</span><br><span class="line">      target:&#39;http:localhost:3000&#39; &#x2F;&#x2F; 配置一个代理</span><br><span class="line">      pathRewrite:&#123;&#39;&#x2F;api&#39;, &#39;&#39;&#125; &#x2F;&#x2F; 重写路径</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  &#x2F;&#x2F; 2) 前端只想从mock模拟数据获取</span><br><span class="line">  before(app)&#123; &#x2F;&#x2F;提供的方法&#x2F;钩子</span><br><span class="line">    app.get(&#39;&#x2F;user&#39;, (req,res)&#x3D;&gt;&#123;</span><br><span class="line">    res.json(&#123;name:&#39;左左-before&#39;&#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>3) 有服务端，不想用代理来处理，在服务端中启动webpack 端口用服务端端口</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add webpack-dev-middleware -D</span><br></pre></td></tr></table></figure>
+<p><strong>server.js</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let webpack &#x3D; require(&#39;webpack&#39;)</span><br><span class="line">let middle &#x3D; require(&#39;webpack-dev-middleware&#39;) &#x2F;&#x2F; 在服务端启动webpack</span><br><span class="line"></span><br><span class="line">let config &#x3D; require(&#39;.&#x2F;webpack.config.js&#39;)</span><br><span class="line">let compiler &#x3D; require(config)</span><br><span class="line">app.use(middle(compiler))</span><br></pre></td></tr></table></figure>
+
+<h3 id="0x06-resolve属性的配置"><a href="#0x06-resolve属性的配置" class="headerlink" title="0x06 resolve属性的配置"></a>0x06 resolve属性的配置</h3><p><strong>webpack.config.js</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">resolve:&#123; &#x2F;&#x2F; 解析第三方包 common</span><br><span class="line">  modules: [path.resolve(&#39;node_modules&#39;],</span><br><span class="line">  &#x2F;&#x2F; 1）</span><br><span class="line">  alias:&#123; &#x2F;&#x2F; 别名  vue--vue.runtime</span><br><span class="line">    bootstrap:&#39;bootstrap&#x2F;dist&#x2F;css&#x2F;bootstrap.css&#39; &#x2F;&#x2F; 举栗子：只引用其中的样式</span><br><span class="line">  &#125;,</span><br><span class="line">  &#x2F;&#x2F; 2)</span><br><span class="line">  mainFields:[&#39;style&#39;,&#39;main&#39;], &#x2F;&#x2F; 指定路径-先找style，找不到再找main</span><br><span class="line">  &#x2F;&#x2F; 3)</span><br><span class="line">  mainFields:[], &#x2F;&#x2F; 入口文件的名字index.js---根据应用场景</span><br><span class="line">  extensions:[&#39;.js&#39;,&#39;.cs&#39;,&#39;.json&#39;,&#39;.vue&#39;] &#x2F;&#x2F; import时省略后缀在这里加上</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="0x07-定义环境变量"><a href="#0x07-定义环境变量" class="headerlink" title="0x07 定义环境变量"></a>0x07 定义环境变量</h3><p>项目在开发时一套环境，上线时一套环境，如何选择开发还是上线的环境</p>
+<p><strong>webpack.config.js</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">plugins:[</span><br><span class="line">  new webpack.DefinePlugin(&#123;</span><br><span class="line">    DEV:&quot;&#39;dev&#39;&quot; &#x2F;&#x2F; production</span><br><span class="line">    &#x2F;&#x2F; or</span><br><span class="line">    DEV:JSON.strngify(&#39;&#39;)</span><br><span class="line">    FLAG:&#39;true&#39; &#x2F;&#x2F; 布尔类型不用加stringify，若是计算表达式加stringify为字符串，否则作为数字先计算</span><br><span class="line">  &#125;)</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p><strong>index.js</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if(DEV)&#123;</span><br><span class="line">  url &#x3D; &#39;&#39;</span><br><span class="line">&#125; else &#123;</span><br><span class="line">  url &#x3D; &#39;&#39;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="0x08-区分不同环境"><a href="#0x08-区分不同环境" class="headerlink" title="0x08 区分不同环境"></a>0x08 区分不同环境</h3><p>分别写两个单独的文件，在两个文件中分别配上自己的环境(开发生产)，通过smart将两个配置文件合并，彻底解决生产环境和开发环境的不同。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add webpack-merge -D</span><br></pre></td></tr></table></figure>
+
+<p><strong>webpack.prod.js</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">let &#123;smart&#125; &#x3D; require(&#39;webpack-merge&#39;)</span><br><span class="line">let base &#x3D; require(&#39;.&#x2F;webpack.base.js&#39;)</span><br><span class="line">module.exports &#x3D; smart(base, &#123;</span><br><span class="line">  mode:&#39;production&#39;,</span><br><span class="line">  optimization:&#123;</span><br><span class="line">    minimizer:[]</span><br><span class="line">  &#125;,</span><br><span class="line">  plugin:[]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p><strong>webpack.dev.js</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">let &#123;smart&#125; &#x3D; require(&#39;webpack-merge&#39;)</span><br><span class="line">let base &#x3D; require(&#39;.&#x2F;webpack.base.js&#39;)</span><br><span class="line">module.exports &#x3D; smart(base, &#123;</span><br><span class="line">  mode:&#39;dev&#39;,</span><br><span class="line">  devServer:&#123;&#125;,</span><br><span class="line">  devtool:&#39;source-map&#39;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+      
+      <!-- reward -->
+      
+      <div id="reward-btn">
+        Donate
+      </div>
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+        <div class="declare">
+          <ul class="post-copyright">
+            <li>
+              <i class="ri-copyright-line"></i>
+              <strong>Copyright： </strong>
+              Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source.
+            </li>
+          </ul>
+        </div>
+        
+    <footer class="article-footer">
+      
+          
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/08/15/%E7%8F%A0%E5%B3%B0%E6%9E%B6%E6%9E%84%E5%85%AC%E5%BC%80%E8%AF%BE%E7%AC%94%E8%AE%B0%E4%B9%8Bwebpack4%EF%BC%88%E4%BA%8C%EF%BC%89/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/" rel="tag">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/" rel="tag">webpack</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+    
+      <a href="/2020/08/15/%E7%8F%A0%E5%B3%B0%E6%9E%B6%E6%9E%84%E5%85%AC%E5%BC%80%E8%AF%BE%E7%AC%94%E8%AE%B0%E4%B9%8Bwebpack4%EF%BC%88%E4%B8%80%EF%BC%89/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">珠峰架构公开课笔记之webpack4（一）基础篇</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+<!-- valine评论 -->
+<div id="vcomments-box">
+    <div id="vcomments">
+    </div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        app_id: 'edHAGzXzD0UAbLJJuf4EV9tl-gzGzoHsz',
+        app_key: 'o8BX6zydN5USMwtz54eGfVBn',
+        path: window.location.pathname,
+        notify: false,
+        verify: false,
+        avatar: 'monsterid',
+        placeholder: '给我的文章加点评论吧~',
+        recordIP: true
+    });
+    const infoEle = document.querySelector('#vcomments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+        infoEle.childNodes.forEach(function (item) {
+            item.parentNode.removeChild(item);
+        });
+    }
+</script>
+<style>
+    #vcomments-box {
+        padding: 5px 30px;
+    }
+
+    @media screen and (max-width: 800px) {
+        #vcomments-box {
+            padding: 5px 0px;
+        }
+    }
+
+    #vcomments-box #vcomments {
+        background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+        padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+        padding-left: 10px;
+    }
+</style>
+
+  
+
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2020
+        <i class="ri-heart-fill heart_icon"></i> Lynn Zuo
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        Powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+        <span class="division">|</span>
+        Theme - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>Visitors:<span id="busuanzi_value_site_uv"></span></s>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>Views:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="Lynn"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/travel">旅行</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="https://www.cnblogs.com/lynn-z/" target="_blank" rel="noopener">随笔</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Subtitle -->
+
+<script>
+  try {
+    var typed = new Typed("#subtitle", {
+      strings: ['面朝大海，春暖花开', '愿你一生努力，一生被爱', '想要的都拥有，得不到的都释怀'],
+      startDelay: 0,
+      typeSpeed: 200,
+      loop: true,
+      backSpeed: 100,
+      showCursor: true
+    });
+  } catch (err) {
+    console.log(err)
+  }
+</script>
+
+<!-- Tocbot -->
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+<!-- ClickLove -->
+
+
+<script src="/js/clickLove.js"></script>
+
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+<!-- CanvasBackground -->
+
+
+<script src="/js/dz.js"></script>
+
+
+
+    
+    
+    
+      
+  </div>
+</body>
+
+</html>

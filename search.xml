@@ -1,83 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>珠峰架构公开课笔记之webpack4（二）</title>
-    <url>/2020/05/26/%E7%8F%A0%E5%B3%B0%E6%9E%B6%E6%9E%84%E5%85%AC%E5%BC%80%E8%AF%BE%E7%AC%94%E8%AE%B0%E4%B9%8Bwebpack4%EF%BC%88%E4%BA%8C%EF%BC%89/</url>
-    <content><![CDATA[<h2 id="珠峰架构公开课笔记之webpack4（二）"><a href="#珠峰架构公开课笔记之webpack4（二）" class="headerlink" title="珠峰架构公开课笔记之webpack4（二）"></a>珠峰架构公开课笔记之webpack4（二）</h2><p>这部分主要是JS模块高级语法向ES5转化、JS语法处理校验、图片资源打包及文件分类。</p>
-<p>个人经验之谈：学习webpack之前还是要先学好JS和ES6语法（尤其是箭头函数），然后有一定VUE基础，学起来webpack工作机制理解更快，更能融会贯通，所以打好基础很重要。代码一定要去实践！由简入繁，从易到难。</p>
-<h3 id="0x01-JS模块转化ES6语法"><a href="#0x01-JS模块转化ES6语法" class="headerlink" title="0x01 JS模块转化ES6语法"></a>0x01 JS模块转化ES6语法</h3><p>es6/其他更高级语法——&gt;es5语法</p>
+    <title>珠峰架构公开课笔记之webpack4（二）配置篇</title>
+    <url>/2020/08/15/%E7%8F%A0%E5%B3%B0%E6%9E%B6%E6%9E%84%E5%85%AC%E5%BC%80%E8%AF%BE%E7%AC%94%E8%AE%B0%E4%B9%8Bwebpack4%EF%BC%88%E4%BA%8C%EF%BC%89/</url>
+    <content><![CDATA[<h2 id="珠峰架构公开课笔记之webpack4（二）配置篇"><a href="#珠峰架构公开课笔记之webpack4（二）配置篇" class="headerlink" title="珠峰架构公开课笔记之webpack4（二）配置篇"></a>珠峰架构公开课笔记之webpack4（二）配置篇</h2><p>个人经验之谈：学习webpack之前还是要先学好JS和ES6语法（尤其是箭头函数），然后有一定VUE基础，学起来webpack工作机制理解更快，反过来也能理解vue中一些配置原理，打好基础很重要。代码一定要去实践！由简入繁，从易到难。</p>
+<h3 id="0x01-打包多页应用"><a href="#0x01-打包多页应用" class="headerlink" title="0x01 打包多页应用"></a>0x01 打包多页应用</h3><p>首先打包的入口和出口处配置多个：</p>
+<p><strong>webpack.config.js</strong></p>
 <a id="more"></a>
-<p>安装插件：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yarn add @babel&#x2F;plugin-proposal-class-properties -D</span><br><span class="line">yarn add @babel&#x2F;plugin-proposal-decorators -D</span><br></pre></td></tr></table></figure>
-<p><strong>webpack.config.js</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">rules:[</span><br><span class="line">&#123;</span><br><span class="line">  test: &#x2F;\.js$&#x2F;,</span><br><span class="line">  use: &#123;</span><br><span class="line">    loader: &#39;babel-loader&#39;,</span><br><span class="line">    options: &#123;</span><br><span class="line">    presets:[ &#x2F;&#x2F; 用babel-loader 把es6--&gt;es5</span><br><span class="line">      &#39;@babel&#x2F;preset-env&#39;</span><br><span class="line">    ],</span><br><span class="line">    plugins:[</span><br><span class="line">      [&quot;@babel&#x2F;plugin-proposal-decorators&quot;, &#123;&quot;legacy&quot;: true&#125;],</span><br><span class="line">      [&quot;@babel&#x2F;plugin-proposal-class-properties&quot;, &#123;&quot;loose&quot;: true&#125;]</span><br><span class="line">    ]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-<p><strong>index.js</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@log &#x2F;&#x2F; 装饰器</span><br><span class="line">class A&#123; &#x2F;&#x2F; new A() a&#x3D;1</span><br><span class="line">    a &#x3D; 1;</span><br><span class="line">&#125;</span><br><span class="line">let a &#x3D; new A();</span><br><span class="line">console.log(a.a)</span><br><span class="line"></span><br><span class="line">function log(target)&#123;</span><br><span class="line">    console.log(target, &#39;23&#39;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="0x02-处理JS语法及校验"><a href="#0x02-处理JS语法及校验" class="headerlink" title="0x02 处理JS语法及校验"></a>0x02 处理JS语法及校验</h3><p>a.js</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class B&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">function * gen(params) &#123;</span><br><span class="line">  yield 1;</span><br><span class="line">&#125;</span><br><span class="line">console.log(gen().next());</span><br></pre></td></tr></table></figure>
-
-<p>安装插件</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yarn add @babel&#x2F;plugin-transform-runtime -D</span><br><span class="line">yarn add @babel&#x2F;runtime</span><br><span class="line">yarn add @babel&#x2F;polyfill</span><br></pre></td></tr></table></figure>
-<p>校验: ESlint</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yarn add eslint eslint-loader -D</span><br></pre></td></tr></table></figure>
-<p><strong>webpack.config.js</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  test: &#x2F;\.js$&#x2F;,</span><br><span class="line">  use: &#123;</span><br><span class="line">    loader: &#39;eslint-loader&#39;,</span><br><span class="line">    options: &#123;</span><br><span class="line">      enforce: &#39;pre&#39; &#x2F;&#x2F; previous，post在普通loader之后执行</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  enforce: &#39;pre&#39; &#x2F;&#x2F; previous，post在普通loader之后执行</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-
-<h3 id="0x03-全局变量引入问题"><a href="#0x03-全局变量引入问题" class="headerlink" title="0x03 全局变量引入问题"></a>0x03 全局变量引入问题</h3><p>安装jquery</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yarn add jquery</span><br></pre></td></tr></table></figure>
-<p>引入jquery</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">impor $ from &#39;jquery&#39;;</span><br><span class="line">console.log($)</span><br></pre></td></tr></table></figure>
-<p><strong>webpack.config.js</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 1) expose-loader 暴露到window上</span><br><span class="line">&#x2F;&#x2F; 2）providePlugin 给每个人提供一个￥</span><br><span class="line">&#x2F;&#x2F; 3）引入不打包</span><br><span class="line">let webpack &#x3D; require(&#39;webpack&#39;);</span><br><span class="line">&#x2F;&#x2F; plugins</span><br><span class="line">new webpack.ProvidePlugin(&#123; &#x2F;&#x2F; 在每个模块中都注入$</span><br><span class="line">  $: &#39;jquery&#39;</span><br><span class="line">&#125;)</span><br><span class="line">...</span><br><span class="line">externals:&#123;</span><br><span class="line">  jquery: &#39;jQuery&#39;</span><br><span class="line">&#125;,</span><br><span class="line">...</span><br><span class="line">&#x2F;&#x2F; rules</span><br><span class="line">&#123;</span><br><span class="line">  test: require.resolve(&#39;jquery&#39;),</span><br><span class="line">  use: &#39;expose-loader?$&#39;</span><br><span class="line">&#125;,</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-
-<h3 id="0x04-图片处理"><a href="#0x04-图片处理" class="headerlink" title="0x04 图片处理"></a>0x04 图片处理</h3><p>图片打包的三种方式：</p>
-<ol>
-<li>JS中路径赋值</li>
-<li>CSS中的背景图片</li>
-<li>HTML中<img>标签</li>
-</ol>
-<p>使用<code>html-withimg-loader</code>结合<code>url-loader</code> /<code>file-loader</code>  加载器实现项目中的路径解析。</p>
-<p>安装插件</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yarn add file-loader</span><br><span class="line">yarn add html-withimg-loader</span><br><span class="line">yarn add url-loader</span><br></pre></td></tr></table></figure>
-<p><strong>index.js</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; webpack打包我们的图片</span><br><span class="line">&#x2F;&#x2F; 1） 在js中创建图片来引入</span><br><span class="line">&#x2F;&#x2F; file-loader默认会在内部生成一张图片到dist目录下，把生成图片的名字返回来</span><br><span class="line">import &#39;.&#x2F;index.css&#39; &#x2F;&#x2F; 2） 在CSSS中引入,background(&#39;url)</span><br><span class="line">import logo from &#39;.&#x2F;logo.png&#39; &#x2F;&#x2F; 把图片引入，返回的结果是一个新的图片地址</span><br><span class="line">let image &#x3D; new Image();</span><br><span class="line">console.log(logo)</span><br><span class="line">image.src &#x3D; logo; &#x2F;&#x2F; 图片路径赋值</span><br><span class="line">document.body.appendChild(image);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 3） 在html中直接写死，src：&lt;img src&#x3D;&quot;&quot; alt&#x3D;&quot;&quot; &#x2F;&gt;</span><br></pre></td></tr></table></figure>
-<p><strong>index.css</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 2）背景图</span><br><span class="line">div&#123;</span><br><span class="line">  background: url(&quot;.&#x2F;logo.png&quot;);</span><br><span class="line">  width:500px;</span><br><span class="line">  height:300px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>index.html</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">3) 在html中添加&lt;img&gt;标签</span><br><span class="line">&lt;img src&#x3D;&quot;.&#x2F;logo.png&quot; alt&#x3D;&quot;&quot; &#x2F;&gt;</span><br></pre></td></tr></table></figure>
-
-<p><strong>webpack.config.js</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  test: &#x2F;\.html$&#x2F;,</span><br><span class="line">  use:&#39;html-withimg-loader&#39;</span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">  test: &#x2F;\.(png|jpg|gif)$&#x2F;,</span><br><span class="line">  &#x2F;&#x2F; 做一个限制，当图片小于多少K时，用base64来转化</span><br><span class="line">  &#x2F;&#x2F; 否则用file-loader产生真实的图片</span><br><span class="line">  use: &#123;</span><br><span class="line">    loader: &#39;url-loader&#39;,</span><br><span class="line">    options: &#123;</span><br><span class="line">      limit: 200*1024，</span><br><span class="line">      esModule: false, &#x2F;&#x2F; 这里设置为false，否则加&lt;img&gt;标签方式打包后图片加不出来</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-<p>通过设置<code>esModule: false,</code>解决打包后发现只有HTML中<img>标签中的图片加载不出来的问题。</p>
-<h3 id="0x05-打包文件分类"><a href="#0x05-打包文件分类" class="headerlink" title="0x05 打包文件分类"></a>0x05 打包文件分类</h3><ol>
-<li>某种文件资源分类</li>
-</ol>
-<p><strong>CSS文件</strong><br>在抽取CSS样式文件的插件中的路径中添加文件夹</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">new MiniCssExtractPlugin(&#123;</span><br><span class="line">  filename:&#39;css&#x2F;main.css&#39;</span><br><span class="line">&#125;),</span><br></pre></td></tr></table></figure>
-<p><strong>图片文件</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  test: &#x2F;\.(png|jpg|gif)$&#x2F;,</span><br><span class="line">  use: &#123;</span><br><span class="line">    loader: &#39;url-loader&#39;,</span><br><span class="line">    options: &#123;</span><br><span class="line">      limit: 200*1024，</span><br><span class="line">      esModule: false,</span><br><span class="line">      name:&#39;images&#x2F;[name]-[hash:5].[ext]&#39; &#x2F;&#x2F;images:图片打包的文件夹；            </span><br><span class="line">      &#x2F;&#x2F;[name].[ext]：设定图片按照本来的文件名和扩展名打包，不用进行额外编码          </span><br><span class="line">      &#x2F;&#x2F;[hash:5]：项目中如果两个文件夹中的图片重名，打包图片就会被覆盖，加上hash值的前五位作为图片名避免重名。</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>添加CDN方式</li>
-</ol>
-<p>给资源添加publickPath:</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">output:&#123;</span><br><span class="line">  filename:&#39;bundle.[hash:5].js&#39;, &#x2F;&#x2F; 打包后的文件名</span><br><span class="line">  path: path.resolve(__dirname, &#39;dist&#39;), &#x2F;&#x2F; 路径必须是一个绝对</span><br><span class="line">  publicPath:&#39;http:&#x2F;&#x2F;域名&#39;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 或者在CSS&#x2F;图片部分单独添加publicPath</span><br><span class="line">&#x2F;&#x2F; 实现给某些资源（某一个样式&#x2F;某些图片等文件）添加CDN，同时实现文件划分、资源分类</span><br><span class="line">use: &#123;</span><br><span class="line">  loader: &#39;url-loader&#39;,</span><br><span class="line">  options: &#123;</span><br><span class="line">    esModule: false,</span><br><span class="line">    limit: 500*1024,</span><br><span class="line">    name:&#39;images&#x2F;[name]-[hash:8].[ext]&#39;,</span><br><span class="line">    publicPath:&#39;http:&#x2F;&#x2F;yuming&#39;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="0x06-打包多页应用"><a href="#0x06-打包多页应用" class="headerlink" title="0x06 打包多页应用"></a>0x06 打包多页应用</h3><p>首先打包的入口和出口处配置多个：</p>
-<p><strong>webpack.config.js</strong></p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">entry: &#123; &#x2F;&#x2F; 入口，相对路径</span><br><span class="line">  home: &#39;.&#x2F;src&#x2F;index.js&#39;,</span><br><span class="line">  other: &#39;.&#x2F;src&#x2F;other.js&#39;</span><br><span class="line">&#125;,</span><br><span class="line">output:&#123; &#x2F;&#x2F; 出口</span><br><span class="line">  &#x2F;&#x2F; [name]: home other</span><br><span class="line">  filename: &#39;[name].js&#39;, &#x2F;&#x2F; 打包后的文件名</span><br><span class="line">  path: path.resolve(__dirname, &#39;dist&#39;)</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
 
 <p>然后打包时模板生成html插件中：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">new HtmlWebpackPlugin(&#123;</span><br><span class="line">  template:&#39;.&#x2F;src&#x2F;index.html&#39;,</span><br><span class="line">  filename:&#39;home.html&#39;,</span><br><span class="line">  chunks:[&#39;home&#39;], &#x2F;&#x2F; 代码块,仅引入home</span><br><span class="line">&#125;),</span><br><span class="line">new HtmlWebpackPlugin(&#123;</span><br><span class="line">  template:&#39;.&#x2F;src&#x2F;index.html&#39;,</span><br><span class="line">  filename:&#39;other.html&#39;,</span><br><span class="line">  chunks:[&#39;home&#39;,&#39;other&#39;], &#x2F;&#x2F; 代码块,可同时引入home和other的写法</span><br><span class="line">  </span><br><span class="line">&#125;),</span><br></pre></td></tr></table></figure>
 
-<h3 id="0x07-配置sourcemap"><a href="#0x07-配置sourcemap" class="headerlink" title="0x07 配置sourcemap"></a>0x07 配置sourcemap</h3><p>关于配置source-map:<br>源码映射,生成sourcemap文件，出错了会标识当前出错的列和行。</p>
+<h3 id="0x02-配置sourcemap"><a href="#0x02-配置sourcemap" class="headerlink" title="0x02 配置sourcemap"></a>0x02 配置sourcemap</h3><p>关于配置source-map:<br>源码映射,生成sourcemap文件，出错了会标识当前出错的列和行。</p>
 <p><strong>webpack.config.js</strong></p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 1）源码映射，生成sourcemap文件，出错了会标识当前出错的列和行，大而全，独立</span><br><span class="line">&#x2F;&#x2F; devtool: &#39;source-map&#39;, &#x2F;&#x2F; 增加映射文件，可以帮我们调试源代码</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 2）不会产生单独的文件，但是可以显示行和列</span><br><span class="line">&#x2F;&#x2F; devtool: &#39;eval-source-map&#39;,</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 3）不会产生列 但是是一个单独的映射文件</span><br><span class="line">&#x2F;&#x2F; devtool: &#39;cheap-module-source-map&#39;, &#x2F;&#x2F; 产生后可以保留进行调试</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 4）不会产生文件 集成在打包后的文件中 不会产生列</span><br><span class="line">devtool: &#39;cheap-module-eval-source-map&#39;,</span><br></pre></td></tr></table></figure>
 
 <p>先在<code>index.js</code>把代码写错，等待<code>sourcemap</code>报错</p>
 <p>在浏览器报错得到映射进行查看。</p>
-]]></content>
+<h3 id="0x03-Watch的用法"><a href="#0x03-Watch的用法" class="headerlink" title="0x03 Watch的用法"></a>0x03 Watch的用法</h3><p>npm run build下监控当前代码变化，实时打包</p>
+<p><strong>webpack.config.js</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">watch: true,</span><br><span class="line">watchOptions:&#123; &#x2F;&#x2F; 监控的选项</span><br><span class="line">  poll:1000, &#x2F;&#x2F; 每秒问我1000次</span><br><span class="line">  aggreatementTimeout:500 &#x2F;&#x2F; 防抖</span><br><span class="line">  ignored:&#x2F;node_modules&#x2F; &#x2F;&#x2F; 不需要监控的文件</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="0x04-webpack小插件应用"><a href="#0x04-webpack小插件应用" class="headerlink" title="0x04 webpack小插件应用"></a>0x04 webpack小插件应用</h3><p>1) cleanWebpackPlugin</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yarn add cleanWebpackPlugin -D</span><br></pre></td></tr></table></figure>
+<p><strong>webpack.config.js</strong><br>let cleanWebpackPlugin = require(‘’)<br>plugins: [<br>  new cleanWebpackPlugin({‘./dist’}) // 把dist先删掉再打包<br>]<br>2) copyWebpackPlugin</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yarn add cleanWebpackPlugin -D</span><br></pre></td></tr></table></figure>
+<p><strong>webpack.config.js</strong><br>let copyWebpackPlugin = require(‘’)<br>plugins: [<br>  new cleanWebpackPlugin([ // 拷贝<br>    {from:’./doc’, to:’./(dist)’}<br>  ]) // 打包到dist<br>]<br>3) bannerPlugin–内置<br><strong>webpack.config.js</strong><br>let webpack = require(‘’)<br>plugins: [<br>  new bannerPlugin(‘made 2020 by xx’) // 打包到文件开头声明<br>]</p>
+<h3 id="0x05-webpack跨域问题"><a href="#0x05-webpack跨域问题" class="headerlink" title="0x05 webpack跨域问题"></a>0x05 webpack跨域问题</h3><p>express是node框架，起一个服务器</p>
+<p><strong>server.js</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let express &#x3D; require(&#39;express&#39;)</span><br><span class="line"></span><br><span class="line">let app &#x3D; express();</span><br><span class="line">app.get(&#39;&#x2F;api&#x2F;user&#39;, (req,res)&#x3D;&gt;&#123;</span><br><span class="line">  res.json(&#123;name:&#39;左左&#39;&#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.listen(3000);</span><br></pre></td></tr></table></figure>
+
+<p>客户端发ajax请求</p>
+<p><strong>index.js</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let xhr &#x3D; new XMLHttpRequest();</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; http:localhost:8080 webpack-dev-sever的服务---3000</span><br><span class="line">&#x2F;&#x2F; http proxy</span><br><span class="line">xhr.open(&#39;GET&#39;, &#39;&#x2F;api&#x2F;user&#39;, true);</span><br><span class="line"></span><br><span class="line">xhr.onload &#x3D; function()&#123;</span><br><span class="line">  console.log(xhr.response)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">xhr.send();</span><br></pre></td></tr></table></figure>
+
+<p>客户端配置跨域</p>
+<p><strong>webpack.config.js</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">devServer:&#123;</span><br><span class="line">  &#x2F;&#x2F; 1) 请求服务器</span><br><span class="line">  proxy:&#123;</span><br><span class="line">    &#39;&#x2F;api&#39;:&#123; &#x2F;&#x2F; 重写的方式把请求代理到express服务器上</span><br><span class="line">      target:&#39;http:localhost:3000&#39; &#x2F;&#x2F; 配置一个代理</span><br><span class="line">      pathRewrite:&#123;&#39;&#x2F;api&#39;, &#39;&#39;&#125; &#x2F;&#x2F; 重写路径</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  &#x2F;&#x2F; 2) 前端只想从mock模拟数据获取</span><br><span class="line">  before(app)&#123; &#x2F;&#x2F;提供的方法&#x2F;钩子</span><br><span class="line">    app.get(&#39;&#x2F;user&#39;, (req,res)&#x3D;&gt;&#123;</span><br><span class="line">    res.json(&#123;name:&#39;左左-before&#39;&#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>3) 有服务端，不想用代理来处理，在服务端中启动webpack 端口用服务端端口</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yarn add webpack-dev-middleware -D</span><br></pre></td></tr></table></figure>
+<p><strong>server.js</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let webpack &#x3D; require(&#39;webpack&#39;)</span><br><span class="line">let middle &#x3D; require(&#39;webpack-dev-middleware&#39;) &#x2F;&#x2F; 在服务端启动webpack</span><br><span class="line"></span><br><span class="line">let config &#x3D; require(&#39;.&#x2F;webpack.config.js&#39;)</span><br><span class="line">let compiler &#x3D; require(config)</span><br><span class="line">app.use(middle(compiler))</span><br></pre></td></tr></table></figure>
+
+<h3 id="0x06-resolve属性的配置"><a href="#0x06-resolve属性的配置" class="headerlink" title="0x06 resolve属性的配置"></a>0x06 resolve属性的配置</h3><p><strong>webpack.config.js</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">resolve:&#123; &#x2F;&#x2F; 解析第三方包 common</span><br><span class="line">  modules: [path.resolve(&#39;node_modules&#39;],</span><br><span class="line">  &#x2F;&#x2F; 1）</span><br><span class="line">  alias:&#123; &#x2F;&#x2F; 别名  vue--vue.runtime</span><br><span class="line">    bootstrap:&#39;bootstrap&#x2F;dist&#x2F;css&#x2F;bootstrap.css&#39; &#x2F;&#x2F; 举栗子：只引用其中的样式</span><br><span class="line">  &#125;,</span><br><span class="line">  &#x2F;&#x2F; 2)</span><br><span class="line">  mainFields:[&#39;style&#39;,&#39;main&#39;], &#x2F;&#x2F; 指定路径-先找style，找不到再找main</span><br><span class="line">  &#x2F;&#x2F; 3)</span><br><span class="line">  mainFields:[], &#x2F;&#x2F; 入口文件的名字index.js---根据应用场景</span><br><span class="line">  extensions:[&#39;.js&#39;,&#39;.cs&#39;,&#39;.json&#39;,&#39;.vue&#39;] &#x2F;&#x2F; import时省略后缀在这里加上</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="0x07-定义环境变量"><a href="#0x07-定义环境变量" class="headerlink" title="0x07 定义环境变量"></a>0x07 定义环境变量</h3><p>项目在开发时一套环境，上线时一套环境，如何选择开发还是上线的环境</p>
+<p><strong>webpack.config.js</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">plugins:[</span><br><span class="line">  new webpack.DefinePlugin(&#123;</span><br><span class="line">    DEV:&quot;&#39;dev&#39;&quot; &#x2F;&#x2F; production</span><br><span class="line">    &#x2F;&#x2F; or</span><br><span class="line">    DEV:JSON.strngify(&#39;&#39;)</span><br><span class="line">    FLAG:&#39;true&#39; &#x2F;&#x2F; 布尔类型不用加stringify，若是计算表达式加stringify为字符串，否则作为数字先计算</span><br><span class="line">  &#125;)</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p><strong>index.js</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">if(DEV)&#123;</span><br><span class="line">  url &#x3D; &#39;&#39;</span><br><span class="line">&#125; else &#123;</span><br><span class="line">  url &#x3D; &#39;&#39;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="0x08-区分不同环境"><a href="#0x08-区分不同环境" class="headerlink" title="0x08 区分不同环境"></a>0x08 区分不同环境</h3><p>分别写两个单独的文件，在两个文件中分别配上自己的环境(开发生产)，通过smart将两个配置文件合并，彻底解决生产环境和开发环境的不同。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yarn add webpack-merge -D</span><br></pre></td></tr></table></figure>
+
+<p><strong>webpack.prod.js</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let &#123;smart&#125; &#x3D; require(&#39;webpack-merge&#39;)</span><br><span class="line">let base &#x3D; require(&#39;.&#x2F;webpack.base.js&#39;)</span><br><span class="line">module.exports &#x3D; smart(base, &#123;</span><br><span class="line">  mode:&#39;production&#39;,</span><br><span class="line">  optimization:&#123;</span><br><span class="line">    minimizer:[]</span><br><span class="line">  &#125;,</span><br><span class="line">  plugin:[]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p><strong>webpack.dev.js</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let &#123;smart&#125; &#x3D; require(&#39;webpack-merge&#39;)</span><br><span class="line">let base &#x3D; require(&#39;.&#x2F;webpack.base.js&#39;)</span><br><span class="line">module.exports &#x3D; smart(base, &#123;</span><br><span class="line">  mode:&#39;dev&#39;,</span><br><span class="line">  devServer:&#123;&#125;,</span><br><span class="line">  devtool:&#39;source-map&#39;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>学习</category>
       </categories>
@@ -87,9 +71,9 @@
       </tags>
   </entry>
   <entry>
-    <title>珠峰架构公开课笔记之webpack4（一）</title>
-    <url>/2020/05/26/%E7%8F%A0%E5%B3%B0%E6%9E%B6%E6%9E%84%E5%85%AC%E5%BC%80%E8%AF%BE%E7%AC%94%E8%AE%B0%E4%B9%8Bwebpack4%EF%BC%88%E4%B8%80%EF%BC%89/</url>
-    <content><![CDATA[<h2 id="珠峰架构公开课笔记之webpack（一）"><a href="#珠峰架构公开课笔记之webpack（一）" class="headerlink" title="珠峰架构公开课笔记之webpack（一）"></a>珠峰架构公开课笔记之webpack（一）</h2><p>先开个坑，后面接着补。正好测试下这个Blog还正常吗，重新翻了一遍git命令和错误解决都没整明白勉强能用，中间不加root权限还死活用不了hexo命令，现在什么都没做过了几天，按照试了不知多少遍的解决方案随便捣鼓了两下，不仅码云上的博客貌似恢复正常了，github上搭建的博客也莫名其妙正常了。差点要放弃这个Blog了，wordpress也要抽时间搞起来了，话说博客园和CSDN使用不要太简单……</p>
+    <title>珠峰架构公开课笔记之webpack4（一）基础篇</title>
+    <url>/2020/08/15/%E7%8F%A0%E5%B3%B0%E6%9E%B6%E6%9E%84%E5%85%AC%E5%BC%80%E8%AF%BE%E7%AC%94%E8%AE%B0%E4%B9%8Bwebpack4%EF%BC%88%E4%B8%80%EF%BC%89/</url>
+    <content><![CDATA[<h2 id="珠峰架构公开课笔记之webpack（一）基础篇"><a href="#珠峰架构公开课笔记之webpack（一）基础篇" class="headerlink" title="珠峰架构公开课笔记之webpack（一）基础篇"></a>珠峰架构公开课笔记之webpack（一）基础篇</h2><p>先开个坑，后面接着补。正好测试下这个Blog还正常吗，重新翻了一遍git命令和错误解决都没整明白勉强能用，中间不加root权限还死活用不了hexo命令，现在什么都没做过了几天，按照试了不知多少遍的解决方案随便捣鼓了两下，不仅码云上的博客貌似恢复正常了，github上搭建的博客也莫名其妙正常了。差点要放弃这个Blog了，wordpress也要抽时间搞起来了，话说博客园和CSDN使用不要太简单……</p>
 <h3 id="0x01-webpack安装"><a href="#0x01-webpack安装" class="headerlink" title="0x01 webpack安装"></a>0x01 webpack安装</h3><p>我太菜了，之前没有了解过yarn,先去安装了解了下yarn，小白可以参考我这篇博文<a href="https://www.cnblogs.com/lynn-z/p/12893810.html" target="_blank" rel="noopener">：Ubuntu20.04安装yarn报错gpg: can’t connect to the agent: IPC connect call failed（已解决）</a>，主要记录了我遇到的报错，当然还有yarn安装步骤和常见命令。</p>
 <a id="more"></a>
 <ul>
@@ -140,7 +124,66 @@
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yarn add uglifyjs-webpack-plugin -D</span><br></pre></td></tr></table></figure>
 <p><strong>webpack.config.js</strong></p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let OptimizeCSS &#x3D; require(&#39;optimize-css-assets-webpack-plugin&#39;);</span><br><span class="line">let UglifyJS &#x3D; require(&#39;uglifyjs-webpack-plugin&#39;);</span><br><span class="line"></span><br><span class="line">optimization:&#123;</span><br><span class="line">  minimizer:[</span><br><span class="line">    new UglifyJS(&#123;</span><br><span class="line">    cache: true,</span><br><span class="line">    parallel: true,</span><br><span class="line">    sourceMap: true</span><br><span class="line">    &#125;),</span><br><span class="line">  new OptimizeCSS()</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>样式打包这一块从插入样式开始就没能成功，最后放弃这一块，以后填坑，暂时大概知道这么个流程。</p>
+
+<h3 id="0x07-JS模块转化ES6语法"><a href="#0x07-JS模块转化ES6语法" class="headerlink" title="0x07 JS模块转化ES6语法"></a>0x07 JS模块转化ES6语法</h3><p>es6/其他更高级语法——&gt;es5语法<br>安装插件：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yarn add @babel&#x2F;plugin-proposal-class-properties -D</span><br><span class="line">yarn add @babel&#x2F;plugin-proposal-decorators -D</span><br></pre></td></tr></table></figure>
+<p><strong>webpack.config.js</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">rules:[</span><br><span class="line">&#123;</span><br><span class="line">  test: &#x2F;\.js$&#x2F;,</span><br><span class="line">  use: &#123;</span><br><span class="line">    loader: &#39;babel-loader&#39;,</span><br><span class="line">    options: &#123;</span><br><span class="line">    presets:[ &#x2F;&#x2F; 用babel-loader 把es6--&gt;es5</span><br><span class="line">      &#39;@babel&#x2F;preset-env&#39;</span><br><span class="line">    ],</span><br><span class="line">    plugins:[</span><br><span class="line">      [&quot;@babel&#x2F;plugin-proposal-decorators&quot;, &#123;&quot;legacy&quot;: true&#125;],</span><br><span class="line">      [&quot;@babel&#x2F;plugin-proposal-class-properties&quot;, &#123;&quot;loose&quot;: true&#125;]</span><br><span class="line">    ]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<p><strong>index.js</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@log &#x2F;&#x2F; 装饰器</span><br><span class="line">class A&#123; &#x2F;&#x2F; new A() a&#x3D;1</span><br><span class="line">    a &#x3D; 1;</span><br><span class="line">&#125;</span><br><span class="line">let a &#x3D; new A();</span><br><span class="line">console.log(a.a)</span><br><span class="line"></span><br><span class="line">function log(target)&#123;</span><br><span class="line">    console.log(target, &#39;23&#39;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="0x08-处理JS语法及校验"><a href="#0x08-处理JS语法及校验" class="headerlink" title="0x08 处理JS语法及校验"></a>0x08 处理JS语法及校验</h3><p>a.js</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class B&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">function * gen(params) &#123;</span><br><span class="line">  yield 1;</span><br><span class="line">&#125;</span><br><span class="line">console.log(gen().next());</span><br></pre></td></tr></table></figure>
+
+<p>安装插件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yarn add @babel&#x2F;plugin-transform-runtime -D</span><br><span class="line">yarn add @babel&#x2F;runtime</span><br><span class="line">yarn add @babel&#x2F;polyfill</span><br></pre></td></tr></table></figure>
+<p>校验: ESlint</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yarn add eslint eslint-loader -D</span><br></pre></td></tr></table></figure>
+<p><strong>webpack.config.js</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  test: &#x2F;\.js$&#x2F;,</span><br><span class="line">  use: &#123;</span><br><span class="line">    loader: &#39;eslint-loader&#39;,</span><br><span class="line">    options: &#123;</span><br><span class="line">      enforce: &#39;pre&#39; &#x2F;&#x2F; previous，post在普通loader之后执行</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  enforce: &#39;pre&#39; &#x2F;&#x2F; previous，post在普通loader之后执行</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<h3 id="0x09-全局变量引入问题"><a href="#0x09-全局变量引入问题" class="headerlink" title="0x09 全局变量引入问题"></a>0x09 全局变量引入问题</h3><p>安装jquery</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yarn add jquery</span><br></pre></td></tr></table></figure>
+<p>引入jquery</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">impor $ from &#39;jquery&#39;;</span><br><span class="line">console.log($)</span><br></pre></td></tr></table></figure>
+<p><strong>webpack.config.js</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 1) expose-loader 暴露到window上</span><br><span class="line">&#x2F;&#x2F; 2）providePlugin 给每个人提供一个￥</span><br><span class="line">&#x2F;&#x2F; 3）引入不打包</span><br><span class="line">let webpack &#x3D; require(&#39;webpack&#39;);</span><br><span class="line">&#x2F;&#x2F; plugins</span><br><span class="line">new webpack.ProvidePlugin(&#123; &#x2F;&#x2F; 在每个模块中都注入$</span><br><span class="line">  $: &#39;jquery&#39;</span><br><span class="line">&#125;)</span><br><span class="line">...</span><br><span class="line">externals:&#123;</span><br><span class="line">  jquery: &#39;jQuery&#39;</span><br><span class="line">&#125;,</span><br><span class="line">...</span><br><span class="line">&#x2F;&#x2F; rules</span><br><span class="line">&#123;</span><br><span class="line">  test: require.resolve(&#39;jquery&#39;),</span><br><span class="line">  use: &#39;expose-loader?$&#39;</span><br><span class="line">&#125;,</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<h3 id="0x10-图片处理"><a href="#0x10-图片处理" class="headerlink" title="0x10 图片处理"></a>0x10 图片处理</h3><p>图片打包的三种方式：</p>
+<ol>
+<li>JS中路径赋值</li>
+<li>CSS中的背景图片</li>
+<li>HTML中<img>标签</li>
+</ol>
+<p>使用<code>html-withimg-loader</code>结合<code>url-loader</code> /<code>file-loader</code>  加载器实现项目中的路径解析。</p>
+<p>安装插件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yarn add file-loader</span><br><span class="line">yarn add html-withimg-loader</span><br><span class="line">yarn add url-loader</span><br></pre></td></tr></table></figure>
+<p><strong>index.js</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; webpack打包我们的图片</span><br><span class="line">&#x2F;&#x2F; 1） 在js中创建图片来引入</span><br><span class="line">&#x2F;&#x2F; file-loader默认会在内部生成一张图片到dist目录下，把生成图片的名字返回来</span><br><span class="line">import &#39;.&#x2F;index.css&#39; &#x2F;&#x2F; 2） 在CSSS中引入,background(&#39;url)</span><br><span class="line">import logo from &#39;.&#x2F;logo.png&#39; &#x2F;&#x2F; 把图片引入，返回的结果是一个新的图片地址</span><br><span class="line">let image &#x3D; new Image();</span><br><span class="line">console.log(logo)</span><br><span class="line">image.src &#x3D; logo; &#x2F;&#x2F; 图片路径赋值</span><br><span class="line">document.body.appendChild(image);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 3） 在html中直接写死，src：&lt;img src&#x3D;&quot;&quot; alt&#x3D;&quot;&quot; &#x2F;&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>index.css</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 2）背景图</span><br><span class="line">div&#123;</span><br><span class="line">  background: url(&quot;.&#x2F;logo.png&quot;);</span><br><span class="line">  width:500px;</span><br><span class="line">  height:300px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>index.html</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">3) 在html中添加&lt;img&gt;标签</span><br><span class="line">&lt;img src&#x3D;&quot;.&#x2F;logo.png&quot; alt&#x3D;&quot;&quot; &#x2F;&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>webpack.config.js</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  test: &#x2F;\.html$&#x2F;,</span><br><span class="line">  use:&#39;html-withimg-loader&#39;</span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">  test: &#x2F;\.(png|jpg|gif)$&#x2F;,</span><br><span class="line">  &#x2F;&#x2F; 做一个限制，当图片小于多少K时，用base64来转化</span><br><span class="line">  &#x2F;&#x2F; 否则用file-loader产生真实的图片</span><br><span class="line">  use: &#123;</span><br><span class="line">    loader: &#39;url-loader&#39;,</span><br><span class="line">    options: &#123;</span><br><span class="line">      limit: 200*1024，</span><br><span class="line">      esModule: false, &#x2F;&#x2F; 这里设置为false，否则加&lt;img&gt;标签方式打包后图片加不出来</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<p>通过设置<code>esModule: false,</code>解决打包后发现只有HTML中<img>标签中的图片加载不出来的问题。</p>
+<h3 id="0x11-打包文件分类"><a href="#0x11-打包文件分类" class="headerlink" title="0x11 打包文件分类"></a>0x11 打包文件分类</h3><ol>
+<li>某种文件资源分类</li>
+</ol>
+<p><strong>CSS文件</strong><br>在抽取CSS样式文件的插件中的路径中添加文件夹</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">new MiniCssExtractPlugin(&#123;</span><br><span class="line">  filename:&#39;css&#x2F;main.css&#39;</span><br><span class="line">&#125;),</span><br></pre></td></tr></table></figure>
+<p><strong>图片文件</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  test: &#x2F;\.(png|jpg|gif)$&#x2F;,</span><br><span class="line">  use: &#123;</span><br><span class="line">    loader: &#39;url-loader&#39;,</span><br><span class="line">    options: &#123;</span><br><span class="line">      limit: 200*1024，</span><br><span class="line">      esModule: false,</span><br><span class="line">      name:&#39;images&#x2F;[name]-[hash:5].[ext]&#39; &#x2F;&#x2F;images:图片打包的文件夹；            </span><br><span class="line">      &#x2F;&#x2F;[name].[ext]：设定图片按照本来的文件名和扩展名打包，不用进行额外编码          </span><br><span class="line">      &#x2F;&#x2F;[hash:5]：项目中如果两个文件夹中的图片重名，打包图片就会被覆盖，加上hash值的前五位作为图片名避免重名。</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>添加CDN方式</li>
+</ol>
+<p>给资源添加publickPath:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">output:&#123;</span><br><span class="line">  filename:&#39;bundle.[hash:5].js&#39;, &#x2F;&#x2F; 打包后的文件名</span><br><span class="line">  path: path.resolve(__dirname, &#39;dist&#39;), &#x2F;&#x2F; 路径必须是一个绝对</span><br><span class="line">  publicPath:&#39;http:&#x2F;&#x2F;域名&#39;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 或者在CSS&#x2F;图片部分单独添加publicPath</span><br><span class="line">&#x2F;&#x2F; 实现给某些资源（某一个样式&#x2F;某些图片等文件）添加CDN，同时实现文件划分、资源分类</span><br><span class="line">use: &#123;</span><br><span class="line">  loader: &#39;url-loader&#39;,</span><br><span class="line">  options: &#123;</span><br><span class="line">    esModule: false,</span><br><span class="line">    limit: 500*1024,</span><br><span class="line">    name:&#39;images&#x2F;[name]-[hash:8].[ext]&#39;,</span><br><span class="line">    publicPath:&#39;http:&#x2F;&#x2F;yuming&#39;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
 ]]></content>
       <categories>
         <category>学习</category>
